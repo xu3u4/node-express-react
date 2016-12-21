@@ -1,0 +1,38 @@
+{
+  "name": "node-express-react",
+  "version": "1.0.0",
+  "description": "Practices for react",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "webpack-start": "webpack && npm start",
+    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "node-express-react"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "react"
+  ],
+  "author": "Jocelyn",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "webpack-dev-server": "^1.16.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-react-transform": "^2.0.2",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "react-transform-hmr": "^1.0.4",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
