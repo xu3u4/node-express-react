@@ -3,11 +3,11 @@ import React from 'react';
 import GreetingCom from './greeting.jsx';
 
 //component name must be Uppercamel case
-var MainMessage = React.createClass({
-	render: function(){
+class MainMessage extends React.Component{
+	render(){
 		return <GreetingCom name = "Jocelyn" />;
 	}
-});
+}
 
 ReactDOM.render(
 	<MainMessage />,
