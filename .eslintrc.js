@@ -63,7 +63,7 @@ module.exports = {
         "func-names": "error",
         "func-style": "error",
         "generator-star-spacing": "error",
-        "global-require": "error",
+        // "global-require": "error", enable the information required from file system
         "guard-for-in": "error",
         "handle-callback-err": "off",
         "id-blacklist": "error",

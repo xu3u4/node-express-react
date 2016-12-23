@@ -1,18 +1,17 @@
-var jsdom = require('mocha-jsdom');
-var assert = require('assert');
-//var React = require('react');
-var TestUtils = require('react-addons-test-utils');
+require('./utils/dom-mock')('<html><body></body></html>');
 
-require('../app/js/app')('<html><body></body></html>');
-
+import jsdom from 'mocha-jsdom';
+import assert from 'assert';
+import React from 'react';
+import TestUtils from 'react-addons-test-utils';
+import GreetingCom from '../app/js/greeting';
 
 describe('Testing my div', () => {
-  jsdom({skipWindowCheck: true});
+    jsdom({skipWindowCheck: true}); // skips checking of window at startup. When false, mocha-jsdom will throw an error if window already exists. Defaults to false
 
     it('should contain text', () => {
-        var GreetingCom = require('../app/js/greeting.jsx');
         var myDiv = TestUtils.renderIntoDocument(
-        <GreetingCom />
+            <GreetingCom  name = "Jocelyn"/>
         );
         var divText = TestUtils.findRenderedDOMComponentWithTag(myDiv, 'div');
 
