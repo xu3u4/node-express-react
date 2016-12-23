@@ -2,6 +2,14 @@
 
 It is a React project based on node, webpack and use webpack-dev-server for hot reload.
 
+## Features
+- React
+- ES6
+- Eslint (for maintaining coding quality)
+- Mocha (for testing)
+- JsDOM (for mocking DOM)
+
+
 # Environment setup
 
 ```

@@ -6,6 +6,7 @@ import React from 'react';
 import TestUtils from 'react-addons-test-utils';
 import GreetingCom from '../app/js/greeting';
 
+//test message from Greeting component
 describe('Testing my div', () => {
     jsdom({skipWindowCheck: true}); // skips checking of window at startup. When false, mocha-jsdom will throw an error if window already exists. Defaults to false
 
