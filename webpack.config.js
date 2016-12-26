@@ -7,8 +7,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
     filename: 'index.html',
     inject: 'body',
 });
-
-console.log(__dirname+'/dist/index.html');
+var environment = process.env.NODE_ENV || 'development';
 
 module.exports = {
     entry: [
@@ -47,13 +46,12 @@ module.exports = {
     plugins: [HTMLWebpackPluginConfig,
         new webpack.DefinePlugin({
             "process.env": {
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+                NODE_ENV: JSON.stringify(environment)
             }
         }),
         new webpack.HotModuleReplacementPlugin()
     ]
 }
-console.log(`NODE_ENV ${process.env.NODE_ENV}`);
 
 //package.json
 // --devtool eval 會顯示出發生錯誤的行數與檔案名稱
@@ -64,12 +62,4 @@ console.log(`NODE_ENV ${process.env.NODE_ENV}`);
 export NODE_ENV=development --for linux&osx
 set NODE_ENV=development --for windows
 */
-/* for hot reload
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ],
-    devServer: {
-        hot: true,
-        contentBase: './'
-    }
-*/
+
