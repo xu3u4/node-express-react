@@ -6,8 +6,8 @@
   "scripts": {
     "test": "mocha --reporter spec",
     "eslint": "eslint app/js test",
-    "webpack-start": "webpack && npm start",
-    "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base dist"
+    "webpack-start": "export NODE_ENV=development && webpack && npm start",
+    "dev": "export NODE_ENV=development && webpack-dev-server --devtool eval --progress --colors --hot --content-base dist"
   },
   "repository": {
     "type": "git",
@@ -36,6 +36,7 @@
     "babel-preset-react": "^6.16.0",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
+    "html-webpack-plugin": "^2.24.1",
     "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
     "mocha-jsdom": "^1.1.0",
