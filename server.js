@@ -14,6 +14,5 @@ router.get('/', function(req, res) {
 
 
 //set up the router
-
 app.listen(port);
 console.log('server started on ' + port);
