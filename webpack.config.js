@@ -10,18 +10,18 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 var environment = process.env.NODE_ENV || 'development';
 
 module.exports = {
-    entry: [
-        'webpack/hot/dev-server', //for webpack-dev-server live reload
-        __dirname + "/app/js/app.jsx"
-    ],
+    entry: {
+        // greeting: [__dirname + "/app/js/app.jsx", 'webpack/hot/dev-server'], //for webpack-dev-server live reload
+        table: [__dirname + "/app/js/comp_table.jsx", 'webpack/hot/dev-server']
+    },
 
     output: {
-        filename: "bundle.js",
+        filename: "[name].bundle.js",
         path: __dirname + "/dist",
         publicPath: "/" //where index.html
     },
     module: {
-         loaders: [
+        loaders: [
             {
                 test: /\.jsx$/,
 
@@ -32,6 +32,17 @@ module.exports = {
                     path.resolve(__dirname, "node_modules")
                 ],
                 loader: 'babel-loader' //preset is better to be set in .babelrc, it will be easier to manage if there are more than one env
+            },
+            {
+                test: /\.css$/,
+                exclude: [
+                    path.resolve(__dirname, "node_modules")
+                ],
+                loader: 'style-loader!css-loader'
+            },
+            {
+                test: /\.scss$/,
+                loader: 'style!css!sass'
             }
         ]
     },
