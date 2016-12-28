@@ -4,7 +4,8 @@
   "description": "Practices for react",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --reporter spec",
+    "test-client": "mocha test/client --reporter spec",
+    "test-server": "mocha test/server --reporter spec",
     "eslint": "eslint app/js test",
     "webpack-start": "export NODE_ENV=production && webpack && npm start",
     "dev": "export NODE_ENV=development && webpack-dev-server --devtool eval --progress --colors --hot --content-base dist"

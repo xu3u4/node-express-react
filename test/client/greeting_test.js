@@ -1,11 +1,11 @@
-require('./utils/dom-mock')('<html><body></body></html>');
+require('../utils/dom-mock')('<html><body></body></html>');
 
 import jsdom from 'mocha-jsdom';
 import assert from 'assert';
 import React from 'react';
 import expect from 'expect.js';
 import TestUtils from 'react-addons-test-utils';
-import GreetingCom from '../app/js/greeting';
+import GreetingCom from '../../app/js/greeting';
 
 //test message from Greeting component
 describe('Testing my div', () => {
