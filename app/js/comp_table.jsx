@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import GenerateHeader from './header.jsx';
 import GenerateRow from './rows.jsx';
-
-require('../css/table.scss');
+import '../css/table.scss';
 
 const cols = [
 	{ key: 'seq', label: 'seq' },
