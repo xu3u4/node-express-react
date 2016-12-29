@@ -1,7 +1,7 @@
 import React from 'react';
 import Cell from './cell.jsx';
 
-export default class GenerateRow extends React.Component{
+export default class GenerateTbody extends React.Component{
 	render() {
 		const geRow = this.props.rows.map((row, i) =>
 			<tr key = {i} >
