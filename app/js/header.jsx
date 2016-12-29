@@ -8,7 +8,7 @@ export default class GenerateHeader extends React.Component{
 		});
 
 		return (
-			<tr>{geHead}</tr>
+			<thead><tr>{geHead}</tr></thead>
 		);
 	}
 }
