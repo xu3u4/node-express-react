@@ -5,7 +5,7 @@ module.exports = {
         "node": true,
         "mocha": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended", "plugin:react/recommended"],
     "parserOptions": {
         "ecmaFeatures": {
             "experimentalObjectRestSpread": true,
@@ -67,7 +67,6 @@ module.exports = {
         "guard-for-in": "error",
         "handle-callback-err": "off",
         "id-blacklist": "error",
-        "id-length": "error",
         "id-match": "error",
         "indent": "off",
         "init-declarations": "error",
@@ -82,7 +81,6 @@ module.exports = {
         "lines-around-comment": "error",
         "lines-around-directive": "error",
         "max-depth": "error",
-        "max-len": "error",
         "max-lines": "error",
         "max-nested-callbacks": "error",
         "max-params": "error",
@@ -188,9 +186,7 @@ module.exports = {
         "no-warning-comments": "error",
         "no-whitespace-before-property": "error",
         "no-with": "error",
-        "object-curly-newline": "error",
         "object-curly-spacing": "error",
-        "object-property-newline": "error",
         "object-shorthand": "error",
         "one-var": "off",
         "one-var-declaration-per-line": "error",
@@ -204,7 +200,6 @@ module.exports = {
         "prefer-rest-params": "error",
         "prefer-spread": "error",
         "prefer-template": "off",
-        "quote-props": "error",
         "quotes": "off",
         "radix": "error",
         "require-await": "error",
@@ -212,11 +207,9 @@ module.exports = {
         "rest-spread-spacing": "error",
         "semi": "error",
         "semi-spacing": "error",
-        "sort-imports": "error",
-        "sort-keys": "error",
+        "sort-imports": "off",
         "sort-vars": "error",
         "space-before-blocks": "error",
-        "space-before-function-paren": "error",
         "space-in-parens": [
             "error",
             "never"

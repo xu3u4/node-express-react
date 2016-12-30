@@ -20,6 +20,13 @@ module.exports = {
         publicPath: "/" //where index.html
     },
     module: {
+        preLoaders: [
+            {
+                test: /\.jsx?$/,
+                loader: 'eslint',
+                exclude: [/node_modules/]
+            }
+        ],
         loaders: [
             {
                 test: /\.jsx$/,
@@ -45,8 +52,12 @@ module.exports = {
             }
         ]
     },
-     stats: {
+    stats: {
         colors: true
+    },
+    eslint: {
+        failOnWarning: false,
+        failOnError: true
     },
     devServer: {
         inline: true,

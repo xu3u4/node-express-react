@@ -8,7 +8,7 @@
     "test-server": "mocha test/server --reporter spec",
     "eslint": "eslint app/js test",
     "webpack-start": "export NODE_ENV=production && webpack && npm start",
-    "dev": "export NODE_ENV=development && eslint app/js && webpack-dev-server --devtool eval --progress --colors --hot --content-base dist "
+    "dev": "export NODE_ENV=development && webpack-dev-server --devtool eval --progress --colors --hot --content-base dist "
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
     "babel-preset-react": "^6.16.0",
     "css-loader": "^0.26.1",
     "eslint": "^3.12.2",
+    "eslint-loader": "^1.6.1",
     "eslint-plugin-react": "^6.8.0",
     "html-webpack-plugin": "^2.24.1",
     "jsdom": "^9.9.1",
