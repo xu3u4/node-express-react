@@ -30,10 +30,6 @@ module.exports = {
         loaders: [
             {
                 test: /\.jsx$/,
-
-                include: [
-                    path.resolve(__dirname, "./app/js")
-                ],
                 exclude: [
                     path.resolve(__dirname, "node_modules")
                 ],
