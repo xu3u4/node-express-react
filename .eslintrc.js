@@ -36,7 +36,7 @@ module.exports = {
         "block-spacing": "error",
         "brace-style": "error",
         "callback-return": "error",
-        "camelcase": "error",
+        "camelcase": "off",
         "capitalized-comments": [
             "error",
             "never"
@@ -60,7 +60,7 @@ module.exports = {
         "eqeqeq": "error",
         "func-call-spacing": "error",
         "func-name-matching": "error",
-        "func-names": "error",
+        "func-names": "off",
         "func-style": "error",
         "generator-star-spacing": "error",
         // "global-require": "error", enable the information required from file system
@@ -118,7 +118,7 @@ module.exports = {
         "no-implicit-globals": "error",
         "no-implied-eval": "error",
         "no-inline-comments": "off",
-        "no-invalid-this": "error",
+        "no-invalid-this": "off",
         "no-iterator": "error",
         "no-label-var": "error",
         "no-labels": "error",
@@ -172,7 +172,7 @@ module.exports = {
         "no-underscore-dangle": "error",
         "no-unmodified-loop-condition": "error",
         "no-unneeded-ternary": "error",
-        "no-unused-expressions": "error",
+        "no-unused-expressions": "off",
         "no-use-before-define": "error",
         "no-useless-call": "error",
         "no-useless-computed-key": "error",
@@ -186,7 +186,7 @@ module.exports = {
         "no-warning-comments": "error",
         "no-whitespace-before-property": "error",
         "no-with": "error",
-        "object-curly-spacing": "error",
+        "object-curly-spacing": "off",
         "object-shorthand": "error",
         "one-var": "off",
         "one-var-declaration-per-line": "error",
@@ -194,7 +194,7 @@ module.exports = {
         "operator-linebreak": "error",
         "padded-blocks": "off",
         "prefer-arrow-callback": "error",
-        "prefer-const": "error",
+        "prefer-const": "off",
         "prefer-numeric-literals": "error",
         "prefer-reflect": "error",
         "prefer-rest-params": "error",
@@ -211,14 +211,14 @@ module.exports = {
         "sort-vars": "error",
         "space-before-blocks": "error",
         "space-in-parens": [
-            "error",
-            "never"
+            "off",
+            "always"
         ],
         "space-infix-ops": "off",
         "space-unary-ops": "error",
         "spaced-comment": [
-            "error",
-            "never"
+            "off",
+            "always"
         ],
         "strict": "error",
         "symbol-description": "error",
