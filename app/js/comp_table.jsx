@@ -5,16 +5,16 @@ import '../css/table.scss';
 
 export default class MainTable extends React.Component {
 
-	render () {
-		return (
-			<table>
-				<GenerateHeader columns = {this.props.columns} />
-				<GenerateTbody columns = {this.props.columns} rows = {this.props.rows} />
-			</table>
-		);
-	}
+    render () {
+        return (
+            <table>
+                <GenerateHeader columns = {this.props.columns} />
+                <GenerateTbody columns = {this.props.columns} rows = {this.props.rows} />
+            </table>
+        );
+    }
 }
 MainTable.propTypes = {
-	columns: React.PropTypes.array.isRequired,
-	rows: React.PropTypes.array.isRequired
+    columns: React.PropTypes.array.isRequired,
+    rows: React.PropTypes.array.isRequired
 };
