@@ -6,3 +6,4 @@ npm-debug.log
 
 #webpack
 dist/bundle.js
+test/bundleTest.js
