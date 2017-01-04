@@ -13,27 +13,27 @@ describe('Test <GenerateHeader> rendering', () => {
         { key: 'Priority', label: 'Priority' }
     ];
 
-    beforeEach( function() {
+    beforeEach(function() {
         this.render = TestUtils.renderIntoDocument(
             <GenerateHeader columns = {colls} />
         );
     });
 
     it('Render <thead>', function() {
-        let find_header = TestUtils.findRenderedDOMComponentWithTag(this.render, 'thead');
+        const findHeader = TestUtils.findRenderedDOMComponentWithTag(this.render, 'thead');
 
-        expect(find_header).to.exist;
+        expect(findHeader).to.exist;
     });
 
     it('Create <th> collumns', function() {
         const headers = ['seq', 'Status', 'Category', 'Title', 'Owner', 'Priority'];
-        let render_headers = TestUtils.scryRenderedDOMComponentsWithTag(this.render, 'th');
+        const renderHeaders = TestUtils.scryRenderedDOMComponentsWithTag(this.render, 'th');
 
         // check header length
-        expect(render_headers.length).to.equal(headers.length);
+        expect(renderHeaders.length).to.equal(headers.length);
         // loop to check the value of each <th>
         headers.forEach((header, id) => {
-            expect(render_headers[id].textContent).to.equal(header);
+            expect(renderHeaders[id].textContent).to.equal(header);
         });
     });
 });

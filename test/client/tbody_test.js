@@ -17,7 +17,7 @@ describe('Test <GenerateTbody> rendering', () => {
         { seq: '2', Status: 'Open', Category: 'cat2', Title: 'title2', Owner: 'Jocelyn', Priority: '2' }
     ];
 
-    beforeEach( function() {
+    beforeEach(function() {
         React.createElement(React.DOM.table);
         this.render = TestUtils.renderIntoDocument(
             <GenerateTbody columns = {colls} rows = {infos} />
@@ -25,19 +25,19 @@ describe('Test <GenerateTbody> rendering', () => {
     });
 
     it('Render <tbody>', function() {
-        let find_body = TestUtils.findRenderedDOMComponentWithTag(this.render, 'tbody');
+        const findBody = TestUtils.findRenderedDOMComponentWithTag(this.render, 'tbody');
 
-        expect(find_body).to.exist;
+        expect(findBody).to.exist;
     });
 
     it('Expect to render cells', function() {
-        let render_tr = TestUtils.scryRenderedDOMComponentsWithTag(this.render, 'tr');
+        const renderTr = TestUtils.scryRenderedDOMComponentsWithTag(this.render, 'tr');
 
-        expect(render_tr.length).to.equal(infos.length);
+        expect(renderTr.length).to.equal(infos.length);
         infos.forEach((info, id) => {
-            expect(render_tr[id].childNodes.length).to.equal(colls.length);
+            expect(renderTr[id].childNodes.length).to.equal(colls.length);
             colls.forEach((coll, ind) => {
-                expect(render_tr[id].childNodes[ind].textContent).to.equal(info[coll.key]);
+                expect(renderTr[id].childNodes[ind].textContent).to.equal(info[coll.key]);
             });
         });
     });

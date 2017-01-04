@@ -36,7 +36,7 @@ module.exports = {
         "block-spacing": "error",
         "brace-style": "error",
         "callback-return": "error",
-        "camelcase": "off",
+        "camelcase": "error",
         "capitalized-comments": [
             "error",
             "never"
@@ -194,7 +194,7 @@ module.exports = {
         "operator-linebreak": "error",
         "padded-blocks": "off",
         "prefer-arrow-callback": "error",
-        "prefer-const": "off",
+        "prefer-const": "error",
         "prefer-numeric-literals": "error",
         "prefer-reflect": "error",
         "prefer-rest-params": "error",
@@ -211,8 +211,8 @@ module.exports = {
         "sort-vars": "error",
         "space-before-blocks": "error",
         "space-in-parens": [
-            "off",
-            "always"
+            "error",
+            "never"
         ],
         "space-infix-ops": "off",
         "space-unary-ops": "error",

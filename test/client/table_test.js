@@ -6,12 +6,12 @@ import MainTable from '../../app/js/comp_table'; //'export default' component ca
 import GenerateHeader from '../../app/js/header';
 import GenerateTbody from '../../app/js/tbody';
 
-expect.extend( expectJSX );
+expect.extend(expectJSX);
 
-describe( 'Test <MainTable> rendering', () => {
+describe('Test <MainTable> rendering', () => {
     // define Shallow rendering and declare required props.
     // ps. this. is not compatible with ES6 arrow function...
-    beforeEach( function() {
+    beforeEach(function() {
         this.colls = [
             { key: 'seq', label: 'seq' },
             { key: 'Status', label: 'Status' },
@@ -25,14 +25,14 @@ describe( 'Test <MainTable> rendering', () => {
             { seq: '2', Status: 'Open', Category: 'cat2', Title: 'title2', Owner: 'Jocelyn', Priority: '2' }
         ];
         this.renderer = TestUtils.createRenderer();
-        this.renderer.render( <MainTable columns = {this.colls} rows = {this.infos} /> );
+        this.renderer.render(<MainTable columns = {this.colls} rows = {this.infos} />);
     });
 
     // check the children structure
-    it( 'Rendering <MainTable>\'s child components', function() {
-        let result = this.renderer.getRenderOutput();
+    it('Rendering <MainTable>\'s child components', function() {
+        const result = this.renderer.getRenderOutput();
 
-        expect( result ).toEqualJSX(
+        expect(result).toEqualJSX(
             <table>
                 <GenerateHeader columns = {this.colls} />
                 <GenerateTbody columns = {this.colls} rows = {this.infos} />

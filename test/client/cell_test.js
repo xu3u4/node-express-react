@@ -10,7 +10,7 @@ describe('Test <cell> rendering', () => {
         const render = TestUtils.renderIntoDocument(
             <Cell value = {value}/>
         );
-        let td = TestUtils.findRenderedDOMComponentWithTag(render, 'td');
+        const td = TestUtils.findRenderedDOMComponentWithTag(render, 'td');
 
         expect(td).to.exist;
         expect(td.textContent).to.equal(value);
