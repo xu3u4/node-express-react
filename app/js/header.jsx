@@ -6,7 +6,11 @@ export default class GenerateHeader extends React.Component {
 		const geHead = this.props.columns.map((col) => <th key = {col.key} >{col.key}</th>);
 
 		return (
-			<thead><tr>{geHead}</tr></thead>
+			<thead>
+				<tr>{geHead}
+					<td>Action</td>
+				</tr>
+			</thead>
 		);
 	}
 }
