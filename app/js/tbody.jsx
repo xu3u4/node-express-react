@@ -1,15 +1,35 @@
 import React from 'react';
 import CreateRow from './create_row.jsx';
 import Cell from './cell.jsx';
+import update from 'immutability-helper';
 
 
 
 export default class GenerateTbody extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            issueList: this.props.rows
+        };
+    }
+    addRow(issue){
+        const issueList = this.state.issueList;
+        console.log(issue);
+        issueList.push(issue);
+        console.log(issueList);
+        this.setState({
+            issueList: issueList
+        });
+    }
+
     deleteRow(i) {
-        this.props.rows.splice(i, 1);
+        this.state.issueList.splice(i, 1)
+        this.setState({
+            issueList: this.state.issueList
+        });
     }
     render() {
-        const geRow = this.props.rows.map((row, i) =>
+        const geRow = this.state.issueList.map((row, i) =>
             <tr key = {i} >
                 {
                     this.props.columns.map((col) =>
@@ -22,7 +42,7 @@ export default class GenerateTbody extends React.Component {
 
         return (
             <tbody>
-                <CreateRow col = {this.props.columns} />
+                <CreateRow col = {this.props.columns} addRow = {this.addRow.bind(this)}/>
                 {geRow}
             </tbody>
         );
