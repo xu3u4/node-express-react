@@ -1,32 +1,49 @@
 import React from 'react';
 
 export default class Cell extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
         this.state = {
             cell: this.props.value,
             display: "hide_class",
             isbanned: true
-        }
+        };
 	}
     toggleinput() {
         this.setState({
             display: "show_class",
             isbanned: false
         });
-        
     }
-    handleChange(){
-        console.log(123);
+    handleChange(e) {
+        this.setState({
+            cell: e.target.value
+        });
+    }
+    handleEnter(e) {
+        if (e.key === 'Enter') {
+            this.setState({
+                display: "highlight",
+                isbanned: true
+            });
+            this.props.editRow(this.state.cell);
+        } else {
+            this.setState({
+                display: "warning"
+            });
+        }
+
     }
     render() {
         return (
-            <td onDoubleClick = {this.toggleinput.bind(this)} >
-            	<input type="text" value={this.state.cell} className = {this.state.display} onChange = {this.handleChange} disabled = {this.state.isbanned} />
+            <td onClick = { this.toggleinput.bind(this) } >
+                <input type = "text" defaultValue = { this.state.cell } className = { this.state.display } onChange = { this.handleChange.bind(this) }
+                onKeyPress = { this.handleEnter.bind(this) } disabled = { this.state.isbanned } />
             </td>
         );
     }
 }
 Cell.propTypes = {
-    value: React.PropTypes.string.isRequired
+    value: React.PropTypes.string.isRequired,
+    editRow: React.PropTypes.func.isRequired
 };

@@ -1,55 +1,59 @@
 import React from 'react';
 
 export default class CreateRow extends React.Component {
-	constructor(){
-		super();
-		this.state = {
-			newIssue: {}
-		};
-	}
+    constructor() {
+        super();
+        this.state = {
+            newIssue: {}
+        };
+    }
 
-	handleOnchange(key, e) {
+    handleOnchange(key, e) {
 
-		var issue = this.state.newIssue;
+        var issue = this.state.newIssue;
 
-		issue[key] = e.target.value;
-		this.setState({
-			newIssue: issue
-		});
+        issue[key] = e.target.value;
+        this.setState({
+            newIssue: issue
+        });
 
-	}
-	sendRow() {
-		const newIssue = {};
-		for (const key in this.state.newIssue) {
-			newIssue[key] = this.state.newIssue[key];
-		}
-		if(Object.keys(this.state.newIssue).length < this.props.col.length) {
-			Object.keys(this.refs).map((key) => {
-				this.refs[key].value="";
-			});
-		} else {
-			this.props.addRow(newIssue);
-		}
+    }
+    sendRow() {
+        const newIssue = {};
 
-	}
+        for (const key in this.state.newIssue) {
+            newIssue[key] = this.state.newIssue[key];
+        }
+        if (Object.keys(this.state.newIssue).length === this.props.col.length) {
+            this.props.addRow(newIssue);
+            Object.keys(this.refs).map((key) => {
+                this.refs[key].value="";
+            });
+            this.setState({
+                newIssue: {}
+            });
+        }
 
-	render() {
+    }
 
-		const createTd = this.props.col.map((col) =>
-			<td key={col.key}>
-				<input  className="input_row" type="string" ref = {col.key} onChange={(e) => this.handleOnchange(col.key, e)} />
-			</td>
-		);
+    render() {
 
-		return (
-			<tr>
-				{createTd}
-				<td><button onClick={this.sendRow.bind(this)} >ADD</button></td>
-			</tr>
-		);
-	}
+        const createTd = this.props.col.map((col) =>
+            <td key={ col.key }>
+                <input className="input_row" type="string" ref = { col.key } onChange={(e) => this.handleOnchange(col.key, e)} />
+            </td>
+        );
+
+        return (
+            <tr>
+                {createTd}
+                <td><button onClick={ this.sendRow.bind(this) } >ADD</button></td>
+            </tr>
+        );
+    }
 }
 
 CreateRow.propTypes = {
-    col: React.PropTypes.array.isRequired
+    col: React.PropTypes.array.isRequired,
+    addRow: React.PropTypes.func.isRequired
 };

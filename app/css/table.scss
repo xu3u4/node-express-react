@@ -5,12 +5,18 @@ table{
 		text-align: center;
 	}
 	.input_row{
-		border: 1px solid #FFEC33;
+		border: 1px solid #0A4C9B;
 	}
 	.hide_class{
 		color: red;
 	}
 	.show_class{
 		visibility: visible;
+	}
+	.warning{
+		background-color: red;
+	}
+	.highlight{
+		background-color: #FFEC33;
 	}
 }
