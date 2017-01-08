@@ -1,19 +1,18 @@
 import React from 'react';
 
-export default class GenerateHeader extends React.Component {
+const GenerateHeader = ({columns}) => {
 
-	render() {
-		const geHead = this.props.columns.map((col) => <th key = {col.key} >{col.key}</th>);
+    const geHead = columns.map((col) => <th key = {col.key} >{col.key}</th>);
 
-		return (
-			<thead>
-				<tr>{geHead}
-					<td>Action</td>
-				</tr>
-			</thead>
-		);
-	}
+    return (
+        <thead>
+            <tr>{geHead}</tr>
+        </thead>
+    );
 }
+
 GenerateHeader.propTypes = {
-	columns: React.PropTypes.array.isRequired
+    columns: React.PropTypes.array.isRequired
 };
+
+export default GenerateHeader;
