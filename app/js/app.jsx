@@ -1,8 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MainTable from './comp_table.jsx';
-import ActionBtn from './action_btn.jsx';
+// import ActionBtn from './action_btn.jsx';
+import GenerateHeader from './header.jsx';
 import EditTable from './edit_table.jsx';
+import Message from './message.jsx';
+import '../css/table.scss';
+import GenerateTbody from './tbody.jsx';
 
 // component name must be Uppercamel case
 const cols = [
@@ -26,20 +30,22 @@ class TableFrame extends React.Component {
         super();
         this.state = {
             issueList: infos,
-            editmode : false
+            editmode : false,
+            warningClass: 'hide_class'
         }
-        this.toggleEdit = this.toggleEdit.bind(this);
+        // this.toggleEdit = this.toggleEdit.bind(this);
         this.updateTable = this.updateTable.bind(this);
         this.addRow = this.addRow.bind(this);
-        this.handleOnchange = this.handleOnchange(this);
+        this.handleOnchange = this.handleOnchange.bind(this);
+        this.deleteRow = this.deleteRow.bind(this);
         this.inputCol = [];
         this.newIssue = {};
     }
-    toggleEdit(){
-        this.setState ({
-            editmode : !this.state.editmode
-        });
-    }
+    // toggleEdit(row, i){
+    //     this.setState ({
+    //         editmode : !this.state.editmode
+    //     });
+    // }
     updateTable(newTable) {
         newTable = this.state.issueList;
         this.setState({
@@ -47,35 +53,49 @@ class TableFrame extends React.Component {
         });
     }
     addRow() {
+        if(this.inputCol.length+1 < cols.length){
+            this.setState({
+                warningClass: 'show_class'
+            });
+        }else{
+            const newList = this.state.issueList;
+            newList.push(this.newIssue);
+            this.setState({
+                issueList: newList,
+                warningClass: 'hide_class'
+            });
+            this.newIssue = {};
+            this.inputCol = [];
+        }
+    }
+    handleOnchange(key, e) {
+        const keyI = this.inputCol.indexOf(key);
+        this.newIssue[key] = e.target.value;
 
+        if(e.target.value && keyI < 0){
+            this.inputCol.push(key);
+        }else if(e.target.value === ""){
+            this.inputCol.splice(keyI, 1);
+        }
+    }
+    deleteRow(i) {
         const newList = this.state.issueList;
-        newList.push(this.newIssue);
+        newList.splice(i, 1);
         this.setState({
             issueList: newList
         });
-        console.log(this.state.issueList);
-    }
-    handleOnchange(key, e) {
-        // const keyI = this.inputCol.indexOf(key);
-        console.log(key);
-        console.log(e);
-        // this.newIssue[key] = e.target.value;
-
-        // if(e.target.value && this.inputCol.indexOf(key) < 0){
-        //     this.inputCol.push(key);
-        // }else if(e.target.value === ""){
-        //     this.inputCol.splice(keyI, 1);
-        // }
-        // console.log(this.props.editRow);
     }
 
     render() {//editing = {this.state.editmode} updateTable = {this.updateTable}
 
         return(
             <div>
-                <ActionBtn action = {this.toggleEdit} >Edit</ActionBtn>
-                <EditTable columns = { cols } addRow = { this.addRow } onChange = { this.handleOnchange } />
-                <MainTable columns = { cols } rows = { infos } />
+                <Message className = { `${this.state.warningClass} warning` } >All fields should have content</Message>
+                <table>
+                    <GenerateHeader columns={cols} />
+                    <EditTable columns = { cols } addRow = { this.addRow } onChange = { this.handleOnchange } />
+                    <GenerateTbody columns = { cols } rows = { infos } deleteRow = { this.deleteRow } />
+                </table>
 
             </div>
         )
