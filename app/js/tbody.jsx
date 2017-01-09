@@ -1,31 +1,29 @@
 import React from 'react';
-import {observable} from "mobx";
-import {observer} from "mobx-react";
 import CreateRow from './create_row.jsx';
 import Cell from './cell.jsx';
 import EditCell from './edit_cell.jsx';
 
-@observer 
 class GenerateTbody extends React.Component {
-    @observable issueList = this.props.rows;
 
-
-    constructor(props, context) {
-        super(props, context);
-        // this.state = {
-        //     issueList: this.props.rows
-        // };
+    constructor(props) {
+        super(props);
+        this.state = {
+            issueList: this.props.rows,
+            editmode: false
+        };
         // this.issueList = this.props.rows;
         this.deleteRow = this.deleteRow.bind(this);
-
+        // this.updateTable = this.updateTable.bind(this);
+        // this.addRow = this.addRow.bind(this);
+        this.toggleEdit = this.toggleEdit.bind(this);
     }
-    addRow(issue) {
-        // const issueList = this.state.issueList;
 
-        // issue.newadd = true;
-        // issueList.push(issue);
-        // this.setState({
-        //     issueList: issueList
+
+    toggleEdit(row, i) {
+        // const row = row;
+        // this.deleteRow(i);
+        // this.setState ({
+        //     editmode: !this.state.editmode
         // });
     }
 
@@ -39,33 +37,35 @@ class GenerateTbody extends React.Component {
     }
 
     deleteRow(i) {
-        this.issueList.splice(i, 1);
+        const newList = this.state.issueList;
+        newList.splice(i, 1);
+        this.setState({
+            issueList: newList
+        });
     }
 
     render() {
-        const editing = false;
-        const geRow = this.issueList.map((row, i) =>
-            <tr key = { i } className = { row.newadd ? 'highlight' : null } >
+        const geRow = this.state.issueList.map((row, i) =>
+            <tr key = { i } className = { row.newadd ? 'highlight' : null } onDoubleClick = {this.toggleEdit(row, i)} >
                 {
                     this.props.columns.map((col) => {
                         if(col.key !== 'Action') {
-                            if(editing) {
-                                return <EditCell key = { col.key } value = { row[col.key] } editRow = { this.editRow.bind(this, i, col.key) } />
-                            }else {
-                                return <Cell key = { col.key } value = { row[col.key] }/>
-                            }
+                            return <Cell key = { col.key } value = { row[col.key] }/>
                         } else {
-                            return <td key = { col.key }><button onClick={ () => this.deleteRow(i) } >Delete</button></td>
+                            return (
+                                <td key = { col.key }>
+                                    <button onClick={ () => this.deleteRow(i) } >Delete</button>
+                                </td>
+                            )
                         }
                     })
                  }
-                
+
             </tr>
         );
 
-        return (
+        return (//<CreateRow col = { this.props.columns } addRow = { this.addRow }>{this.state.editmode ? "Update" : "Add"}</CreateRow>
             <tbody>
-                <CreateRow col = { this.props.columns } addRow = { this.addRow.bind(this) }/>
                 { geRow }
             </tbody>
         );

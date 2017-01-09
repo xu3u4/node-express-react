@@ -1,6 +1,7 @@
 import React from 'react';
+import GenerateHeader from './header.jsx';
 
-export default class CreateRow extends React.Component {
+export default class EditTable extends React.Component {
     constructor() {
         super();
         this.issue = {};
@@ -8,24 +9,7 @@ export default class CreateRow extends React.Component {
         this.inputCol = [];
     }
 
-    handleOnchange(key, e) {
-        const keyI = this.inputCol.indexOf(key);
 
-        this.issue[key] = e.target.value;
-        if(e.target.value && this.inputCol.indexOf(key) < 0){
-            this.inputCol.push(key);
-        }else if(e.target.value === ""){
-            this.inputCol.splice(keyI, 1);
-        }
-        console.log(this.props.editRow);
-        // for (let key in this.issue){
-        //     console.log(this.issue[key]);
-        //     if(!this.issue[key]){
-        //         console.log(this.refs[key]);
-        //         this.refs[key].appendChild(warning);
-        //     }
-        // }
-    }
 
     sendRow() {
         const warning = "<span className = 'warning' >Cannot be empty</span>";
@@ -64,32 +48,32 @@ export default class CreateRow extends React.Component {
 
     render() {
 
-        const createTd = this.props.col.map((col) =>{
+        const createTd = this.props.columns.map((col) =>{
             if(col.key !== 'Action'){
                 return (
                     <td key={ col.key }>
-                        <input className="input_row" type="text" ref = { col.key } onChange={(e) => this.handleOnchange(col.key, e)}
-                        defaultValue = {this.props.editRow[col]} /><br />
-
+                        <input className="input_row" type="text" ref = { col.key } onChange={ (e) => this.props.onChange(col.key, e) } /><br />
                     </td>
                 );
 
             } else {
-                return <td key = { col.key }><button onClick={ this.sendRow } >ADD</button></td>
+                return <td key = { col.key }><button onClick={ this.props.addRow } >ADD</button></td>
             }
 
         });
 
         return (
-            <tr>
-                {createTd}
-            </tr>
+            <table>
+                <GenerateHeader columns={ this.props.columns } />
+                <tbody><tr>{createTd}</tr></tbody>
+            </table>
         );
     }
 }
 
-CreateRow.propTypes = {
-    col: React.PropTypes.array.isRequired,
+EditTable.propTypes = {
+    columns: React.PropTypes.array.isRequired,
     addRow: React.PropTypes.func.isRequired,
-    editRow: React.PropTypes.object
+    onChange: React.PropTypes.func
+    // editRow: React.PropTypes.object
 };

@@ -7,11 +7,11 @@ module.exports = {
     },
     "extends": ["eslint:recommended", "plugin:react/recommended"],
     "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
         "ecmaFeatures": {
-            "experimentalObjectRestSpread": true,
             "jsx": true
-        },
-        "sourceType": "module"
+        }
     },
     "plugins": [
         "react"
@@ -19,7 +19,7 @@ module.exports = {
     "rules": {
         "accessor-pairs": "error",
         "array-bracket-spacing": "error",
-        "array-callback-return": "error",
+        "array-callback-return": "off",
         "arrow-body-style": "error",
         "arrow-parens": [
             "error",
@@ -64,7 +64,7 @@ module.exports = {
         "func-style": "error",
         "generator-star-spacing": "error",
         // "global-require": "error", enable the information required from file system
-        "guard-for-in": "error",
+        "guard-for-in": "off",
         "handle-callback-err": "off",
         "id-blacklist": "error",
         "id-match": "error",
@@ -86,7 +86,7 @@ module.exports = {
         "max-params": "error",
         "max-statements": "error",
         "max-statements-per-line": "error",
-        "multiline-ternary": "error",
+        "multiline-ternary": "off",
         "new-cap": "error",
         "new-parens": "error",
         "newline-after-var": [
@@ -164,7 +164,7 @@ module.exports = {
         "no-sync": "error",
         "no-tabs": "off",
         "no-template-curly-in-string": "error",
-        "no-ternary": "error",
+        "no-ternary": "off",
         "no-throw-literal": "error",
         "no-trailing-spaces": "error",
         "no-undef-init": "error",
@@ -173,6 +173,7 @@ module.exports = {
         "no-unmodified-loop-condition": "error",
         "no-unneeded-ternary": "error",
         "no-unused-expressions": "off",
+        "no-unused-vars": "off",
         "no-use-before-define": "error",
         "no-useless-call": "error",
         "no-useless-computed-key": "error",
@@ -187,7 +188,7 @@ module.exports = {
         "no-whitespace-before-property": "error",
         "no-with": "error",
         "object-curly-spacing": "off",
-        "object-shorthand": "error",
+        "object-shorthand": "off",
         "one-var": "off",
         "one-var-declaration-per-line": "error",
         "operator-assignment": "error",

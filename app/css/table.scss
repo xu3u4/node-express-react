@@ -4,17 +4,21 @@ table{
 		border: 1px solid #333333;
 		text-align: center;
 	}
+	td{
+		width: 150px;
+	}
 	.input_row{
 		border: 1px solid #0A4C9B;
 	}
 	.hide_class{
-		color: red;
+		visibility: hidden;
 	}
 	.show_class{
 		visibility: visible;
 	}
 	.warning{
-		background-color: red;
+		color: red;
+		visibility: visible;
 	}
 	.highlight{
 		background-color: #FFEC33;
