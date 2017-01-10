@@ -1,11 +1,9 @@
 import React from 'react';
 
-const Cell = ({ value }) => (
-    <td>{ value }</td>
-);
+const Cell = ({ children }) => <td>{ children }</td>;
 
 Cell.propTypes = {
-    value: React.PropTypes.string.isRequired
+    children: React.PropTypes.string.isRequired
 };
 
 export default Cell;

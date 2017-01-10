@@ -9,7 +9,7 @@ const GenerateHeader = ({columns}) => {
             <tr>{geHead}</tr>
         </thead>
     );
-}
+};
 
 GenerateHeader.propTypes = {
     columns: React.PropTypes.array.isRequired

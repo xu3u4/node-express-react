@@ -7,13 +7,10 @@ export default class MainTable extends React.Component {
 
     render () {
         return (
-            <div>
-                <p>*Double click to edit and press "Enter" to confirm.</p>
-                <table>
-                    <GenerateHeader columns={ this.props.columns } />
-                    <GenerateTbody columns={ this.props.columns } rows={ this.props.rows } />
-                </table>
-            </div>
+            <table>
+                <GenerateHeader columns={ this.props.columns } />
+                <GenerateTbody columns={ this.props.columns } rows={ this.props.rows } editing = {this.props.editing} updateTable = {this.props.updateTable} />
+            </table>
         );
     }
 }

@@ -1,22 +1,25 @@
 table{
-	border-collapse: collapse;
-	th, td{
-		border: 1px solid #333333;
-		text-align: center;
-	}
-	.input_row{
-		border: 1px solid #0A4C9B;
-	}
-	.hide_class{
-		color: red;
-	}
-	.show_class{
-		visibility: visible;
-	}
-	.warning{
-		background-color: red;
-	}
-	.highlight{
-		background-color: #FFEC33;
-	}
+    border-collapse: collapse;
+    th, td{
+        border: 1px solid #333333;
+        text-align: center;
+    }
+    td{
+        width: 150px;
+    }
+    .input_row{
+        border: 1px solid #0A4C9B;
+    }
+    .highlight{
+        background-color: #FFEC33;
+    }
+}
+.hide_class{
+    visibility: hidden;
+}
+.show_class{
+    visibility: visible;
+}
+.warning{
+    color: red;
 }
