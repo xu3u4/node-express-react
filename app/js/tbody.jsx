@@ -1,18 +1,17 @@
 import React from 'react';
 import Cell from './cell.jsx';
+import ActionBtn from './action_btn.jsx';
 
 const GenerateTbody = (props) => {
-    const toggleEdit = (row, i) => {
-        props.toggleEdit(row, i);
-    };
+
     const geRow = props.rows.map((row, i) =>
-        <tr key = { i } className = { props.newEdit === row.seq ? 'highlight' : null } onDoubleClick = { () => toggleEdit(row, i) } >
+        <tr key = { i } className = { props.newEdit === row.seq ? 'highlight' : null } onDoubleClick = { () => props.toggleEdit(row, i) } >
             {
                 props.columns.map((col) => {
                     if (col.key === 'Action') {
                         return (
                             <td key = { col.key }>
-                                <button onClick={ () => props.deleteRow(i) } >Delete</button>
+                                <ActionBtn action = { () => props.deleteRow(i) } >Delete</ActionBtn>
                             </td>
                         );
                     }
@@ -20,7 +19,6 @@ const GenerateTbody = (props) => {
                     return <Cell key = { col.key } >{ row[col.key] }</Cell>;
                 })
              }
-
         </tr>
     );
 

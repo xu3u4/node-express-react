@@ -1,33 +1,26 @@
 import React from 'react';
+import ActionBtn from './action_btn.jsx';
+import EditCell from './edit_cell.jsx';
 
-export default class EditTable extends React.Component {
-    constructor(props) {
-        super(props);
-        this.issue = {};
-        this.inputCol = [];
-    }
+const EditTable = (props) => {
+    const createTd = props.columns.map((col) => {
+        switch (col.key) {
+            case 'Action':
+                return <td key = { col.key }><ActionBtn action={ props.addRow } >{props.editing ? "Update" : "Add" }</ActionBtn></td>;
+            case 'seq':
+                return <td key = { col.key }>{props.List[col.key]}</td>;
+            default:
+                return (
+                    <EditCell key={ col.key } handleInput={ (e) => props.onChange(col.key, e) } >{props.List[col.key] || ""}</EditCell>
+                );
 
-    render() {
-        const createTd = this.props.columns.map((col) => {
-            if (col.key === 'Action') {
-                return <td key = { col.key }><button onClick={ this.props.addRow } >{this.props.editing ? "Update" : "Add" }</button></td>;
+        }
+    });
 
-            } else if (col.key === 'seq') {
-                return <td key = { col.key }>{this.props.List[col.key]}</td>;
-            }
-
-            return (
-                <td key={ col.key }>
-                    <input className="input_row" type="text" value = {this.props.List[col.key] ? this.props.List[col.key] : ""} onChange={ (e) => this.props.onChange(col.key, e) } />
-                </td>
-            );
-        });
-
-        return (
-            <tbody><tr>{ createTd }</tr></tbody>
-        );
-    }
-}
+    return (
+        <tbody><tr>{ createTd }</tr></tbody>
+    );
+};
 
 EditTable.propTypes = {
     columns: React.PropTypes.array.isRequired,
@@ -36,3 +29,5 @@ EditTable.propTypes = {
     List: React.PropTypes.object,
     editing: React.PropTypes.bool
 };
+
+export default EditTable;
