@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import MainTable from './comp_table.jsx';
-// import ActionBtn from './action_btn.jsx';
 import GenerateHeader from './header.jsx';
 import EditTable from './edit_table.jsx';
 import Message from './message.jsx';
