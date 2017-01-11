@@ -1,6 +1,6 @@
 import React from 'react';
 import Cell from './cell.jsx';
-import ActionBtn from './action_btn.jsx';
+import ActionCell from './action_cell.jsx';
 
 const GenerateTbody = (props) => {
 
@@ -9,11 +9,7 @@ const GenerateTbody = (props) => {
             {
                 props.columns.map((col) => {
                     if (col.key === 'Action') {
-                        return (
-                            <td key={ col.key }>
-                                <ActionBtn action={ () => props.onDeleteRow(i) } >Delete</ActionBtn>
-                            </td>
-                        );
+                        return <ActionCell key={ col.key } action={ () => props.onDeleteRow(i) } >Delete</ActionCell>;
                     }
 
                     return <Cell key={ col.key } >{ row[col.key] }</Cell>;

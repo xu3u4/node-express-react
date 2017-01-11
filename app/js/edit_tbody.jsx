@@ -1,14 +1,15 @@
 import React from 'react';
-import ActionBtn from './action_btn.jsx';
+import ActionCell from './action_cell.jsx';
+import Cell from './cell.jsx';
 import EditCell from './edit_cell.jsx';
 
 const EditTbody = (props) => {
     const createTd = props.columns.map((col) => {
         switch (col.key) {
             case 'Action':
-                return <td key={ col.key }><ActionBtn action={ props.onWriteRow } >{ props.editing ? 'Update' : 'Add' }</ActionBtn></td>;
+                return <ActionCell key={ col.key } action={ props.onWriteRow } >{ props.editing ? 'Update' : 'Add' }</ActionCell>;
             case 'seq':
-                return <td key={ col.key }>{props.editingRow[col.key]}</td>;
+                return <Cell key={ col.key }>{ props.editingRow[col.key] || '' }</Cell>;
             default:
                 return (
                     <EditCell key={ col.key } handleInput={ (e) => props.onChange(col.key, e) } >{ props.editingRow[col.key] || '' }</EditCell>
