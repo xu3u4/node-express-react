@@ -19,7 +19,7 @@ export default class TableFrame extends React.Component {
             newEdit: ""
         };
         this.toggleEdit = this.toggleEdit.bind(this);
-        this.handleWriteRow = this.handleWriteRow.bind(this);
+        this.handleEditRow = this.handleEditRow.bind(this);
         this.handleOnchange = this.handleOnchange.bind(this);
         this.handleDeleteRow = this.handleDeleteRow.bind(this);
         this.inputColumns = [];
@@ -34,7 +34,7 @@ export default class TableFrame extends React.Component {
         });
         this.handleDeleteRow(i);
     }
-    handleWriteRow() {
+    handleEditRow() {
         if (this.inputColumns.length+2 < this.props.cols.length) {
             this.setState({
                 warningClass: 'show_class'
@@ -87,7 +87,7 @@ export default class TableFrame extends React.Component {
                 <Message className={ `${this.state.warningClass} warning` } >All fields should have content</Message>
                 <table>
                     <GenerateHeader columns={ this.props.cols } />
-                    <EditTbody columns={ this.props.cols } onWriteRow={ this.handleWriteRow } onChange={ this.handleOnchange } editingRow={ this.state.selectedRow } editing={ this.state.editmode } />
+                    <EditTbody columns={ this.props.cols } onEditRow={ this.handleEditRow } onChange={ this.handleOnchange } editingRow={ this.state.selectedRow } editing={ this.state.editmode } />
                     <GenerateTbody columns={ this.props.cols } rows={ this.props.infos } onDeleteRow={ this.handleDeleteRow } toggleEdit={ this.toggleEdit } newEdit={ this.state.newEdit } />
                 </table>
             </div>
