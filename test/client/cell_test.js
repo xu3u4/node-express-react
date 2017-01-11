@@ -1,18 +1,17 @@
 import React from 'react';
 import { expect } from 'chai';
-import TestUtils from 'react-addons-test-utils';
+import { mount, shallow } from 'enzyme';
 import Cell from '../../app/js/cell';
 
-describe('Test <cell> rendering', () => {
+describe('Render <Cell>', () => {
 
-    it('Render cells with data', () => {
+    it('should render <td> with children', () => {
         const value = "Jocelyn";
-        const render = TestUtils.renderIntoDocument(
-            <Cell value = {value}/>
+        const cell = shallow(
+            <Cell>{ value }</Cell>
         );
-        const td = TestUtils.findRenderedDOMComponentWithTag(render, 'td');
 
-        expect(td).to.exist;
-        expect(td.textContent).to.equal(value);
+        expect(cell.type()).to.equal('td');
+		expect(cell.contains(value)).to.equal(true);
     });
 });

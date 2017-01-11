@@ -1,39 +1,30 @@
 import React from 'react';
 import { expect } from 'chai';
-import TestUtils from 'react-addons-test-utils';
+import { mount, shallow } from 'enzyme';
 import GenerateHeader from '../../app/js/header';
 
-describe('Test <GenerateHeader> rendering', () => {
-    const colls = [
+describe('Render <GenerateHeader>', () => {
+    const columns = [
         { key: 'seq', label: 'seq' },
         { key: 'Status', label: 'Status' },
         { key: 'Category', label: 'Category' },
         { key: 'Title', label: 'Title' },
         { key: 'Owner', label: 'Owner' },
-        { key: 'Priority', label: 'Priority' }
+        { key: 'Priority', label: 'Priority' },
+        { key: 'Action', label: 'Action' }
     ];
 
     beforeEach(function() {
-        this.render = TestUtils.renderIntoDocument(
-            <GenerateHeader columns = {colls} />
+        this.thead = shallow(
+            <GenerateHeader columns = {columns} />
         );
     });
 
-    it('Render <thead>', function() {
-        const findHeader = TestUtils.findRenderedDOMComponentWithTag(this.render, 'thead');
+    it('should render all columns inside <thead>', function() {
+        const headers = ['seq', 'Status', 'Category', 'Title', 'Owner', 'Priority', 'Action'];
 
-        expect(findHeader).to.exist;
-    });
-
-    it('Create <th> collumns', function() {
-        const headers = ['seq', 'Status', 'Category', 'Title', 'Owner', 'Priority'];
-        const renderHeaders = TestUtils.scryRenderedDOMComponentsWithTag(this.render, 'th');
-
-        // check header length
-        expect(renderHeaders.length).to.equal(headers.length);
-        // loop to check the value of each <th>
-        headers.forEach((header, id) => {
-            expect(renderHeaders[id].textContent).to.equal(header);
-        });
+        expect(this.thead.type()).to.equal('thead');
+        expect(this.thead.find('thead').children().type()).to.equal('tr');
+        expect(this.thead.find('tr').children()).to.have.length(headers.length);
     });
 });
