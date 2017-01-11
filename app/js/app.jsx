@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GenerateHeader from './header.jsx';
-import EditTable from './edit_table.jsx';
+import EditTbody from './edit_tbody.jsx';
+import GenerateTbody from './tbody.jsx';
 import Message from './message.jsx';
 import '../css/table.scss';
-import GenerateTbody from './tbody.jsx';
 
 // component name must be Uppercamel case
 const cols = [
@@ -34,23 +34,23 @@ class TableFrame extends React.Component {
             newEdit: ""
         };
         this.toggleEdit = this.toggleEdit.bind(this);
-        this.addRow = this.addRow.bind(this);
+        this.handleWriteRow = this.handleWriteRow.bind(this);
         this.handleOnchange = this.handleOnchange.bind(this);
-        this.deleteRow = this.deleteRow.bind(this);
-        this.inputCol = [];
+        this.handleDeleteRow = this.handleDeleteRow.bind(this);
+        this.inputColumns = [];
     }
     toggleEdit(row, i) {
         const temp = row;
 
-        this.inputCol = Object.keys(row);
+        this.inputColumns = Object.keys(row);
         this.setState({
             selectedRow: temp,
             editmode: !this.state.editmode
         });
-        this.deleteRow(i);
+        this.handleDeleteRow(i);
     }
-    addRow() {
-        if (this.inputCol.length+2 < cols.length) {
+    handleWriteRow() {
+        if (this.inputColumns.length+2 < cols.length) {
             this.setState({
                 warningClass: 'show_class'
             });
@@ -69,12 +69,12 @@ class TableFrame extends React.Component {
                 selectedRow: {},
                 editmode: false
             });
-            this.inputCol = [];
+            this.inputColumns = [];
         }
     }
     handleOnchange(key, e) {
         const newIssue = this.state.selectedRow;
-        const keyI = this.inputCol.indexOf(key);
+        const keyI = this.inputColumns.indexOf(key);
 
         newIssue[key] = e.target.value;
         this.setState({
@@ -82,12 +82,12 @@ class TableFrame extends React.Component {
         });
 
         if (e.target.value && keyI < 0) {
-            this.inputCol.push(key);
+            this.inputColumns.push(key);
         } else if (e.target.value === "") {
-            this.inputCol.splice(keyI, 1);
+            this.inputColumns.splice(keyI, 1);
         }
     }
-    deleteRow(i) {
+    handleDeleteRow(i) {
         const newList = this.state.issueList;
 
         newList.splice(i, 1);
@@ -99,11 +99,11 @@ class TableFrame extends React.Component {
     render() {
         return (
             <div>
-                <Message className = { `${this.state.warningClass} warning` } >All fields should have content</Message>
+                <Message className={ `${this.state.warningClass} warning` } >All fields should have content</Message>
                 <table>
-                    <GenerateHeader columns= { cols } />
-                    <EditTable columns = { cols } addRow = { this.addRow } onChange = { this.handleOnchange } List = {this.state.selectedRow} editing = {this.state.editmode} />
-                    <GenerateTbody columns = { cols } rows = { infos } deleteRow = { this.deleteRow } toggleEdit = {this.toggleEdit} newEdit = {this.state.newEdit} />
+                    <GenerateHeader columns={ cols } />
+                    <EditTbody columns={ cols } onWriteRow={ this.handleWriteRow } onChange={ this.handleOnchange } editingRow={this.state.selectedRow} editing={this.state.editmode} />
+                    <GenerateTbody columns={ cols } rows={ infos } onDeleteRow={ this.handleDeleteRow } toggleEdit={this.toggleEdit} newEdit={this.state.newEdit} />
                 </table>
             </div>
         );

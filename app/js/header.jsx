@@ -2,7 +2,7 @@ import React from 'react';
 
 const GenerateHeader = ({columns}) => {
 
-    const geHead = columns.map((col) => <th key = {col.key} >{col.key}</th>);
+    const geHead = columns.map((col) => <th key={col.key} >{col.key}</th>);
 
     return (
         <thead>
