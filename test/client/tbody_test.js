@@ -1,16 +1,19 @@
 import React from 'react';
 import { expect } from 'chai';
+import { mount, shallow } from 'enzyme';
+import sinon from 'sinon';
 import TestUtils from 'react-addons-test-utils';
 import GenerateTbody from '../../app/js/tbody';
 
 describe('Test <GenerateTbody> rendering', () => {
-    const colls = [
+    const cols = [
         { key: 'seq', label: 'seq' },
         { key: 'Status', label: 'Status' },
         { key: 'Category', label: 'Category' },
         { key: 'Title', label: 'Title' },
         { key: 'Owner', label: 'Owner' },
-        { key: 'Priority', label: 'Priority' }
+        { key: 'Priority', label: 'Priority' },
+        { key: 'Action', label: 'Action' }
     ];
     const infos = [
         { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' },
@@ -18,27 +21,29 @@ describe('Test <GenerateTbody> rendering', () => {
     ];
 
     beforeEach(function() {
-        React.createElement(React.DOM.table);
-        this.render = TestUtils.renderIntoDocument(
-            <GenerateTbody columns = {colls} rows = {infos} />
+        const handleDeleteRow = sinon.stub();
+        const toggleEdit = sinon.stub();
+        this.newEdit = "1"
+        this.tbody = shallow(
+            <GenerateTbody columns={ cols } rows={ infos } onDeleteRow={ handleDeleteRow } toggleEdit={ toggleEdit } newEdit={ this.newEdit } />
         );
     });
 
-    it('Render <tbody>', function() {
-        const findBody = TestUtils.findRenderedDOMComponentWithTag(this.render, 'tbody');
+    it('should render different cells in <tbody>', function() {
+        expect(this.tbody.type()).equal('tbody');
+        expect(this.tbody.find('tr').children()).to.have.length(cols.length*infos.length);
 
-        expect(findBody).to.exist;
+        cols.forEach((col, id) => {
+            if(col.key === 'Action'){
+                expect(this.tbody.find('tr').first().childAt(id).name()).equal('ActionCell');
+            }else{
+                expect(this.tbody.find('tr').first().childAt(id).name()).equal('Cell');
+            }
+        });
     });
 
-    it('Expect to render cells', function() {
-        const renderTr = TestUtils.scryRenderedDOMComponentsWithTag(this.render, 'tr');
-
-        expect(renderTr.length).to.equal(infos.length);
-        infos.forEach((info, id) => {
-            expect(renderTr[id].childNodes.length).to.equal(colls.length);
-            colls.forEach((coll, ind) => {
-                expect(renderTr[id].childNodes[ind].textContent).to.equal(info[coll.key]);
-            });
-        });
+    it('should have different color if just updated', function() {
+        expect(this.tbody.childAt(this.newEdit-1).hasClass('highlight')).to.be.true;
+        expect(this.tbody.not('.highlight')).to.have.length(infos.length - 1);
     });
 });

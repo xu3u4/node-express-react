@@ -12,6 +12,6 @@ describe('Render <Cell>', () => {
         );
 
         expect(cell.type()).to.equal('td');
-		expect(cell.contains(value)).to.equal(true);
+		expect(cell.text()).to.equal(value);
     });
 });
