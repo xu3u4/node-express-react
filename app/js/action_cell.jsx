@@ -1,10 +1,11 @@
 import React from 'react';
 
-const ActionCell = ({ action, children }) => <td><button onClick={ action } >{ children }</button></td>;
+const ActionCell = (props) => 
+    <td><button onClick = { props.action } >{ props.children }</button></td>;
 
 ActionCell.propTypes = {
-    action: React.PropTypes.func.isRequired,
-    children: React.PropTypes.string
+    children: React.PropTypes.string,
+    action: React.PropTypes.func
 };
 
 export default ActionCell;

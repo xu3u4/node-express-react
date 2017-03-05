@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TableFrame from './container/table_frame.jsx';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducers from './reducers/index.jsx';
+import TableFrame from './containers/table_frame.jsx';
 
 const cols = [
     { key: 'seq', label: 'seq' },
@@ -18,9 +21,11 @@ const infos = [
     { seq: '4', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '4' }
 ];
 
-const App = () => <TableFrame cols={ cols } infos={ infos } />;
+const App = () => <TableFrame />;
 
 ReactDOM.render(
-    <App />,
+    <Provider store={createStore(reducers)}>
+        <App />
+    </Provider>,
     document.getElementById('app')
 );

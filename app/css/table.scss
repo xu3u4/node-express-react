@@ -5,7 +5,10 @@ table{
         text-align: center;
     }
     td{
-        width: 150px;
+        width: 100px;
+        input{
+            width: 90px;
+        }
     }
     .input_row{
         border: 1px solid #0A4C9B;
