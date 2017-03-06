@@ -15,13 +15,12 @@ export function handleDeleteIssue(delIndex, infos) {
     };
 }
 
-export function handleInput(inputField, newInput) {
-    console.log(inputField);
-    console.log(newInput);
-    issue[inputField] = newInput;
+export function handleInput(issue, inputField, newInput) {
+    const newissue = Object.assign({}, issue);
+    newissue[inputField] = newInput;
 
     return {
         type: 'FIELD_INPUT',
-        payload: issue
+        payload: newissue
     };
 }
