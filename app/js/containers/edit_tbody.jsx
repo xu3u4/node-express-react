@@ -8,10 +8,16 @@ import Cell from '../components/cell.jsx';
 import EditCell from '../components/edit_cell.jsx';
 
 class EditTbody extends Component {
+  handleInput(key, value) {
+    this.props.selectedIssue[key] = value;
+    this.props.handleInput(this.props.selectedIssue);
+  }
+  updateIssues() {
+    this.props.handleUpdate();
+  }
   renderEditRow() {
     return (this.props.columns.map((col) => {
       switch (col.key) {
-
         case 'Action':
           return <ActionCell key={col.key} >{this.props.selectedIssue.seq ? 'Update' : 'Add'}</ActionCell>;
         case 'seq':
@@ -20,7 +26,7 @@ class EditTbody extends Component {
           return (
             <EditCell
               key={col.key}
-              onInput={this.props.handleInput}
+              onInput={(event) => this.handleInput(col.key, event.target.value)}
               editingIssue={this.props.selectedIssue}
               columnName={col.key}
             >

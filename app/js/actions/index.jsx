@@ -7,18 +7,15 @@ export function selectIssue(info) {
   };
 }
 
-export function handleDeleteIssue(delIndex, infos) {
-  infos.splice(delIndex, 1);
-
+export function handleDeleteIssue(newinfos) {
+  console.log(infos);
   return {
     type: 'ISSUE_DELETED',
-    payload: infos
+    payload: newinfos
   };
 }
 
-export function handleInput(issue, inputField, newInput) {
-  issue[inputField] = newInput;
-
+export function handleInput(issue) {
   return {
     type: 'FIELD_INPUT',
     payload: issue
