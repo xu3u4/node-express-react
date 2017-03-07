@@ -4,9 +4,9 @@ import HeadsReducer from './reducer_heads.jsx';
 import ActiveIssue from './reducer_active.jsx';
 
 const rootReducer = combineReducers({
-    InfosReducer,
-    HeadsReducer,
-    ActiveIssue
+  InfosReducer,
+  HeadsReducer,
+  ActiveIssue
 });
 
 export default rootReducer;

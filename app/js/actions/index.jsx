@@ -1,26 +1,40 @@
 export function selectIssue(info) {
-    return {
-            type: 'ISSUE_SELECTED',
-            payload: info
-    };
+  const edittingInfo = Object.assign({}, info);
+
+  return {
+    type: 'ISSUE_SELECTED',
+    payload: edittingInfo
+  };
 }
 
 export function handleDeleteIssue(delIndex, infos) {
-    console.log(delIndex);
-    infos.splice(delIndex, 1);
+  infos.splice(delIndex, 1);
 
-    return {
-            type: 'ISSUE_DELETED',
-            payload: infos
-    };
+  return {
+    type: 'ISSUE_DELETED',
+    payload: infos
+  };
 }
 
 export function handleInput(issue, inputField, newInput) {
-    const newissue = Object.assign({}, issue);
-    newissue[inputField] = newInput;
+  issue[inputField] = newInput;
 
-    return {
-        type: 'FIELD_INPUT',
-        payload: newissue
-    };
+  return {
+    type: 'FIELD_INPUT',
+    payload: issue
+  };
+}
+
+export function updateIssues(infos, issue) {
+  if(infos[issue.seq-1]){
+    infos[issue.seq-1] = issue;
+  }else{
+    infos.push(issue);
+  }
+  console.log(infos);
+
+  return {
+    type: 'UPDATE_ISSUES',
+    payload: infos
+  }
 }
