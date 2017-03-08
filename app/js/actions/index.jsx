@@ -8,7 +8,6 @@ export function selectIssue(info) {
 }
 
 export function handleDeleteIssue(newinfos) {
-  console.log(infos);
   return {
     type: 'ISSUE_DELETED',
     payload: newinfos
@@ -22,12 +21,7 @@ export function handleInput(issue) {
   };
 }
 
-export function updateIssues(infos, issue) {
-  if(infos[issue.seq-1]){
-    infos[issue.seq-1] = issue;
-  }else{
-    infos.push(issue);
-  }
+export function updateIssues(infos) {
   console.log(infos);
 
   return {

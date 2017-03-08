@@ -10,6 +10,10 @@ export default function (state = {
       return {
         infos: action.payload
       };
+    case 'UPDATE_ISSUES':
+      return {
+        infos: action.payload
+      }
     default:
       return state;
   }

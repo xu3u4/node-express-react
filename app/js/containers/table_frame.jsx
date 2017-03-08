@@ -12,6 +12,12 @@ import '../../css/table.scss';
 
 class TableFrame extends Component {
 
+  constructor(props) {
+    super(props);
+    this.handleDeleteIssue = this.handleDeleteIssue.bind(this);
+    this.handleSelectIssue = this.handleSelectIssue.bind(this);
+  }
+
   handleDeleteIssue(deleteIndex) {
     this.props.rows.splice(deleteIndex, 1);
     this.props.onDeleteIssue(this.props.rows);
@@ -32,7 +38,9 @@ class TableFrame extends Component {
           onSelectIssue={this.handleSelectIssue} 
         />
         <table>
-          <EditTbody />
+          <EditTbody 
+            rows={this.props.rows}
+          />
         </table>
       </div>
     );

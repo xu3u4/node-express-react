@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { handleInput } from '../actions/index.jsx';
+import { handleInput, updateIssues } from '../actions/index.jsx';
 
 import ActionCell from '../components/action_cell.jsx';
 import Cell from '../components/cell.jsx';
@@ -13,13 +13,21 @@ class EditTbody extends Component {
     this.props.handleInput(this.props.selectedIssue);
   }
   updateIssues() {
-    this.props.handleUpdate();
+    console.log(this.props.rows);
+    // this.props.handleUpdate();
   }
   renderEditRow() {
     return (this.props.columns.map((col) => {
       switch (col.key) {
         case 'Action':
-          return <ActionCell key={col.key} >{this.props.selectedIssue.seq ? 'Update' : 'Add'}</ActionCell>;
+          return (
+            <ActionCell 
+              key={col.key} 
+              action={() => this.updateIssues}
+            >
+              {this.props.selectedIssue.seq ? 'Update' : 'Add'}
+            </ActionCell>
+          );
         case 'seq':
           return <Cell key={col.key}>New</Cell>;
         default:
@@ -33,7 +41,6 @@ class EditTbody extends Component {
               {this.props.selectedIssue[col.key] || ''}
             </EditCell>
           );
-
       }
     }));
   }
@@ -52,7 +59,8 @@ function mapStateToProps(state) {
 
 function mapDispatchtoProps(dispatch) {
   return bindActionCreators({
-    handleInput: handleInput
+    handleInput: handleInput,
+    updateIssues: updateIssues
   }, dispatch);
 }
 
@@ -64,21 +72,15 @@ EditTbody.propTypes = {
     })
   ).isRequired,
   selectedIssue: React.PropTypes.shape({
+    seq: React.PropTypes.string,
     Status: React.PropTypes.string,
     Category: React.PropTypes.string,
     Title: React.PropTypes.string,
     Owner: React.PropTypes.string,
     Priority: React.PropTypes.string
   }).isRequired,
-  // editingIssue: React.PropTypes.shape({
-  //   seq: React.PropTypes.string,
-  //   Status: React.PropTypes.string,
-  //   Category: React.PropTypes.string,
-  //   Title: React.PropTypes.string,
-  //   Owner: React.PropTypes.string,
-  //   Priority: React.PropTypes.string
-  // }).isRequired,
-  handleInput: React.PropTypes.func.isRequired
+  handleInput: React.PropTypes.func.isRequired,
+  updateIssues: React.PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchtoProps)(EditTbody);
