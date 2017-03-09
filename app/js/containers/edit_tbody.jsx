@@ -9,21 +9,26 @@ import EditCell from '../components/edit_cell.jsx';
 
 class EditTbody extends Component {
   handleInput(key, value) {
+    this.props.selectedIssue.seq = this.props.selectedIssue.seq || (1+Number(this.props.rows[this.props.rows.length-1].seq)).toString();
     this.props.selectedIssue[key] = value;
     this.props.handleInput(this.props.selectedIssue);
   }
   updateIssues() {
-    console.log(this.props.rows);
-    // this.props.handleUpdate();
+    if (Object.keys(this.props.selectedIssue).length < 5){
+      return;
+    }
+    this.props.rows.push(this.props.selectedIssue);
+    this.props.updateIssues(this.props.rows);
+    this.props.handleInput({});
   }
   renderEditRow() {
     return (this.props.columns.map((col) => {
       switch (col.key) {
         case 'Action':
           return (
-            <ActionCell 
-              key={col.key} 
-              action={() => this.updateIssues}
+            <ActionCell
+              key={col.key}
+              action={() => this.updateIssues()}
             >
               {this.props.selectedIssue.seq ? 'Update' : 'Add'}
             </ActionCell>

@@ -22,8 +22,6 @@ export function handleInput(issue) {
 }
 
 export function updateIssues(infos) {
-  console.log(infos);
-
   return {
     type: 'UPDATE_ISSUES',
     payload: infos

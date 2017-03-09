@@ -11,6 +11,7 @@ export default function (state = {
         infos: action.payload
       };
     case 'UPDATE_ISSUES':
+      action.payload.sort((a, b) => a.seq-b.seq);
       return {
         infos: action.payload
       }

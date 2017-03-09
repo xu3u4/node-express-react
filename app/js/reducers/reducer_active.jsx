@@ -4,14 +4,9 @@ export default function (state = {
 }, action) {
   switch (action.type) {
     case 'ISSUE_SELECTED':
-      return {
-        ...state,
-        selected_issue: action.payload
-      };
     case 'FIELD_INPUT':
       return {
-        ...state,
-        new_issue: action.payload
+        selected_issue: action.payload
       };
     default:
       return state;
