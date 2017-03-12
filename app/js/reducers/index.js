@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import IssuesReducer from './reducer_issues.jsx';
-import HeadsReducer from './reducer_heads.jsx';
-import ActiveReducer from './reducer_active.jsx';
+import IssuesReducer from './reducer_issues.js';
+import HeadsReducer from './reducer_heads.js';
+import ActiveReducer from './reducer_active.js';
 
 const rootReducer = combineReducers({
   IssuesReducer,

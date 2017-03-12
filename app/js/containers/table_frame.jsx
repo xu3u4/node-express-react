@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectIssue, handleDeleteIssue } from '../actions/action_issues.jsx';
+import { selectIssue, handleDeleteIssue } from '../actions/action_issues';
 
 import RenderHeader from '../components/render_header.jsx';
 import RenderTbody from '../components/render_tbody.jsx';

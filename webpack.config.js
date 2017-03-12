@@ -22,14 +22,14 @@ module.exports = {
     module: {
         preLoaders: [
             {
-                test: /\.jsx?$/,
+                test: /\.(js|jsx)$/,
                 loader: 'eslint',
                 exclude: [/node_modules/]
             }
         ],
         loaders: [
             {
-                test: /\.jsx$/,
+                test: /\.(js|jsx)$/,
                 exclude: [
                     path.resolve(__dirname, "node_modules")
                 ],

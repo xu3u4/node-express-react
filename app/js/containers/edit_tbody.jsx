@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { handleInput, updateIssues, clearInputs, showWarning } from '../actions/action_edit.jsx';
+import { handleInput, updateIssues, clearInputs, showWarning } from '../actions/action_edit';
 
 import ActionCell from '../components/action_cell.jsx';
 import Cell from '../components/cell.jsx';
