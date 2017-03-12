@@ -5,11 +5,9 @@ import { Provider } from 'react-redux';
 import reducers from './reducers/index.jsx';
 import TableFrame from './containers/table_frame.jsx';
 
-const App = () => <TableFrame />;
-
 ReactDOM.render(
   <Provider store={createStore(reducers)}>
-    <App />
+    <TableFrame />
   </Provider>,
   document.getElementById('app')
 );

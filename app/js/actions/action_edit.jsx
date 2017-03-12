@@ -1,7 +1,7 @@
-export function updateIssues(infos) {
+export function updateIssues(issues) {
   return {
     type: 'UPDATE_ISSUES',
-    payload: infos
+    payload: issues
   };
 }
 
