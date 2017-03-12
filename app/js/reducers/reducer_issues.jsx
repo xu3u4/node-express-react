@@ -1,5 +1,5 @@
 export default function (state = {
-  infos: [
+  issues: [
     { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' },
     { seq: '2', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '2' },
     { seq: '3', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '3' },
@@ -8,13 +8,13 @@ export default function (state = {
   switch (action.type) {
     case 'ISSUE_DELETED':
       return {
-        infos: action.payload
+        issues: action.payload
       };
     case 'UPDATE_ISSUES':
-      action.payload.sort((a, b) => a.seq-b.seq);
+      action.payload.sort((a, b) => a.seq - b.seq);
       return {
-        infos: action.payload
-      }
+        issues: action.payload
+      };
     default:
       return state;
   }

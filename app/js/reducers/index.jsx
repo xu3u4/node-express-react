@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import InfosReducer from './reducer_infos.jsx';
+import IssuesReducer from './reducer_issues.jsx';
 import HeadsReducer from './reducer_heads.jsx';
-import ActiveIssue from './reducer_active.jsx';
+import ActiveReducer from './reducer_active.jsx';
 
 const rootReducer = combineReducers({
-  InfosReducer,
+  IssuesReducer,
   HeadsReducer,
-  ActiveIssue
+  ActiveReducer
 });
 
 export default rootReducer;
