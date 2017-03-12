@@ -8,4 +8,4 @@ npm-debug.log
 dist/bundle.js
 
 #Mac store
-app/.DS_Store
+app/js/.DS_Store
