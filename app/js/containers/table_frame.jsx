@@ -6,7 +6,6 @@ import { selectIssue, handleDeleteIssue } from '../actions/action_issues.jsx';
 import RenderHeader from '../components/render_header.jsx';
 import RenderTbody from '../components/render_tbody.jsx';
 import EditTbody from './edit_tbody.jsx';
-// import Message from '../message.jsx';
 import '../../css/table.scss';
 
 // component name must be Uppercamel case
