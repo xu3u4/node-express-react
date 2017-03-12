@@ -23,7 +23,7 @@ class EditTbody extends Component {
       this.props.showWarning();
       return;
     }
-    const currentIssues =~ this.props.rows;
+    const currentIssues = this.props.rows;
     this.props.selectedIssue.seq = currentIssues.length ?
                                   (this.props.selectedIssue.seq ||
                                   (1 + Number(currentIssues[currentIssues.length - 1].seq))

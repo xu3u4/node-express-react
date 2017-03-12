@@ -2,7 +2,7 @@ import React from 'react';
 
 const ActionCell = (props) => (
   <td>
-    <button onClick={props.action} >{ props.children }</button>
+    <button onClick={props.action}>{ props.children }</button>
   </td>
 );
 
