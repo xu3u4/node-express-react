@@ -20,13 +20,13 @@ module.exports = {
         publicPath: "/" //where index.html
     },
     module: {
-        // preLoaders: [
-        //     {
-        //         test: /\.jsx?$/,
-        //         loader: 'eslint',
-        //         exclude: [/node_modules/]
-        //     }
-        // ],
+        preLoaders: [
+            {
+                test: /\.jsx?$/,
+                loader: 'eslint',
+                exclude: [/node_modules/]
+            }
+        ],
         loaders: [
             {
                 test: /\.jsx$/,
