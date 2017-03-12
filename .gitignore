@@ -6,3 +6,6 @@ npm-debug.log
 
 #webpack
 dist/bundle.js
+
+#Mac store
+app/.DS_Store
