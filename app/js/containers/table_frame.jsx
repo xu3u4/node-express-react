@@ -9,22 +9,15 @@ import EditTbody from './edit_tbody.jsx';
 import '../../css/table.scss';
 
 // component name must be Uppercamel case
-
 class TableFrame extends Component {
   constructor(props) {
     super(props);
-    this.handleDeleteIssue = this.handleDeleteIssue.bind(this);
     this.handleSelectIssue = this.handleSelectIssue.bind(this);
-  }
-
-  handleDeleteIssue(deleteIndex) {
-    this.props.rows.splice(deleteIndex, 1);
-    this.props.onDeleteIssue(this.props.rows);
   }
 
   handleSelectIssue(selectIndex) {
     this.props.onSelectIssue(this.props.rows[selectIndex]);
-    this.handleDeleteIssue(selectIndex);
+    this.props.onDeleteIssue(selectIndex);
   }
 
   render() {
@@ -35,13 +28,11 @@ class TableFrame extends Component {
           <RenderTbody
             columns={this.props.columns}
             rows={this.props.rows}
-            onDeleteIssue={this.handleDeleteIssue}
+            onDeleteIssue={this.props.onDeleteIssue}
             onSelectIssue={this.handleSelectIssue}
             newIssue={this.props.newIssue}
           />
-          <EditTbody
-            rows={this.props.rows}
-          />
+          <EditTbody />
         </table>
       </div>
     );
@@ -51,7 +42,7 @@ class TableFrame extends Component {
 function mapStateToProps(state) {
   // whatever is returned will show up as props (this.props.rows) here
   return {
-    rows: state.IssuesReducer.issues,
+    rows: state.IssuesReducer,
     columns: state.HeadsReducer,
     newIssue: state.ActiveReducer.newIssue
   };

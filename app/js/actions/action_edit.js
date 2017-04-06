@@ -1,7 +1,8 @@
-export function updateIssues(issues) {
+export function updateIssues(newIssue) {
+  // issues.sort((a, b) => a.seq - b.seq);
   return {
     type: 'UPDATE_ISSUES',
-    payload: issues
+    payload: newIssue
   };
 }
 

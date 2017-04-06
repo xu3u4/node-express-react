@@ -23,14 +23,7 @@ class EditTbody extends Component {
       this.props.showWarning();
       return;
     }
-    const currentIssues = this.props.rows;
-    this.props.selectedIssue.seq = currentIssues.length ?
-                                  (this.props.selectedIssue.seq ||
-                                  (1 + Number(currentIssues[currentIssues.length - 1].seq))
-                                  .toString())
-                                  : '1';
-    this.props.rows.push(this.props.selectedIssue);
-    this.props.updateIssues(this.props.rows);
+    this.props.updateIssues(this.props.selectedIssue);
     this.props.clearInputs();
   }
 
@@ -38,7 +31,7 @@ class EditTbody extends Component {
     return (this.props.columns.map((col) => {
       switch (col.key) {
         case 'seq':
-          return <Cell key={col.key}>New</Cell>;
+          return <Cell key={col.key}>{col.key}</Cell>;
         case 'Action':
           return (
             <ActionCell
@@ -87,16 +80,6 @@ function mapDispatchtoProps(dispatch) {
 }
 
 EditTbody.propTypes = {
-  rows: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      seq: React.PropTypes.string,
-      Status: React.PropTypes.string,
-      Category: React.PropTypes.string,
-      Title: React.PropTypes.string,
-      Owner: React.PropTypes.string,
-      Priority: React.PropTypes.string
-    })
-  ).isRequired,
   columns: React.PropTypes.arrayOf(
     React.PropTypes.shape({
       key: React.PropTypes.string,

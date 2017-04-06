@@ -1,7 +1,7 @@
-export function handleDeleteIssue(newIssues) {
+export function handleDeleteIssue(deleteId) {
   return {
     type: 'ISSUE_DELETED',
-    payload: newIssues
+    payload: deleteId
   };
 }
 

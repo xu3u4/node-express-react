@@ -44,10 +44,12 @@ RenderTbody.propTypes = {
       Priority: React.PropTypes.string
     })
   ).isRequired,
-  columns: React.PropTypes.arrayOf(React.PropTypes.shape({
-    key: React.PropTypes.string,
-    label: React.PropTypes.string
-  })).isRequired
+  columns: React.PropTypes.arrayOf(
+    React.PropTypes.shape({
+      key: React.PropTypes.string,
+      label: React.PropTypes.string
+    })
+  ).isRequired
 };
 
 export default RenderTbody;
