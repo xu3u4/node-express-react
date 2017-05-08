@@ -17,19 +17,19 @@ module.exports = {
     output: {
         filename: "[name].bundle.js",
         path: __dirname + "/dist",
-        publicPath: "/" //where index.html
+        publicPath: "/" //where index.html is
     },
     module: {
         preLoaders: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.jsx?$/,
                 loader: 'eslint',
                 exclude: [/node_modules/]
             }
         ],
         loaders: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.jsx?$/,
                 exclude: [
                     path.resolve(__dirname, "node_modules")
                 ],

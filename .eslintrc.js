@@ -24,6 +24,7 @@ module.exports = {
         "comma-dangle":0,
         "import/extensions": 0,
         "arrow-body-style": 0,
-        "arrow-parens": 0
+        "arrow-parens": 0,
+        "no-param-reassign": ["error", { "props": false }]
     }
 };

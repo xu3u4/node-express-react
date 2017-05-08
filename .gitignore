@@ -1,11 +1,11 @@
-#node
+# node
 node_modules
 
-#logs
+# logs
 npm-debug.log
 
-#webpack
+# webpack
 dist/bundle.js
 
-#Mac store
+# Mac store
 *.DS_Store*
