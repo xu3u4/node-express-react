@@ -1,30 +1,52 @@
 import React, { Component } from 'react';
+import update from 'immutability-helper';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { handleInput, updateIssues, clearInputs, showWarning } from '../actions/action_edit';
+import { updateIssues, showWarning } from '../actions/action_index';
 
 import ActionCell from '../components/action_cell.jsx';
 import Cell from '../components/cell.jsx';
 import EditCell from '../components/edit_cell.jsx';
 
 class EditTbody extends Component {
-  handleInput(key, value) {
-    this.props.selectedIssue[key] = value;
-    this.props.handleInput(this.props.selectedIssue);
+  constructor(props) {
+    super(props);
+    this.state = {
+      editRow: this.props.selectedIssue || {}
+    };
+    this.handleInput = this.handleInput.bind(this);
   }
 
-  updateIssues() {
-    const inputFields = Object.keys(this.props.selectedIssue).filter((key) => {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.selectedIssue.seq !== nextProps.selectedIssue.seq) {
+      this.setState({
+        editRow: nextProps.selectedIssue
+      });
+    }
+  }
+
+  handleInput(key, value) {
+    this.setState({
+      editRow: update(this.state.editRow, {
+        [key]: { $set: value.trim() }
+      })
+    });
+  }
+
+  handleUpdateIssues() {
+    const inputFields = Object.keys(this.state.editRow).filter((key) => {
       // exclude seq, cause it is auto generated
-      return key !== 'seq' && this.props.selectedIssue[key].length;
+      return key !== 'seq' && this.state.editRow[key].length;
     });
 
     if (Object.values(inputFields).length < 5) {
       this.props.showWarning();
       return;
     }
-    this.props.updateIssues(this.props.selectedIssue);
-    this.props.clearInputs();
+    this.props.updateIssues(this.state.editRow);
+    this.setState({
+      editRow: {}
+    });
   }
 
   renderEditRow() {
@@ -36,7 +58,7 @@ class EditTbody extends Component {
           return (
             <ActionCell
               key={col.key}
-              action={() => this.updateIssues()}
+              action={() => this.handleUpdateIssues()}
             >
               {this.props.selectedIssue.seq ? 'Update' : 'Add'}
             </ActionCell>
@@ -50,7 +72,7 @@ class EditTbody extends Component {
               editingIssue={this.props.selectedIssue}
               isShowWarning={this.props.isShowWarning}
             >
-              {this.props.selectedIssue[col.key] || ''}
+              {this.state.editRow[col.key] || ''}
             </EditCell>
           );
       }
@@ -62,22 +84,18 @@ class EditTbody extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    columns: state.HeadsReducer,
-    selectedIssue: state.ActiveReducer.selectedIssue,
-    isShowWarning: state.ActiveReducer.isShowWarning
-  };
-}
+const mapStateToProps = (state) => ({
+  columns: state.HeadsReducer,
+  selectedIssue: state.IssuesReducer.selectedIssue,
+  isShowWarning: state.IssuesReducer.isShowWarning
+});
 
-function mapDispatchtoProps(dispatch) {
-  return bindActionCreators({
-    handleInput,
+const mapDispatchtoProps = (dispatch) => (
+  bindActionCreators({
     updateIssues,
-    clearInputs,
     showWarning
-  }, dispatch);
-}
+  }, dispatch)
+);
 
 EditTbody.propTypes = {
   columns: React.PropTypes.arrayOf(
@@ -94,9 +112,7 @@ EditTbody.propTypes = {
     Owner: React.PropTypes.string,
     Priority: React.PropTypes.string
   }).isRequired,
-  handleInput: React.PropTypes.func.isRequired,
   updateIssues: React.PropTypes.func.isRequired,
-  clearInputs: React.PropTypes.func.isRequired,
   showWarning: React.PropTypes.func.isRequired,
   isShowWarning: React.PropTypes.bool.isRequired
 };
