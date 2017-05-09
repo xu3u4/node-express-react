@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ActionCell = (props) => (
+const ActionCell = ({ action, children }) => (
   <td>
-    <button onClick={props.action}>{ props.children }</button>
+    <button onClick={action}>{ children }</button>
   </td>
 );
 
