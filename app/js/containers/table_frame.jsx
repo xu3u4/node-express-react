@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectIssue, handleDeleteIssue } from '../actions/action_issues';
+import { editIssue, deleteIssue } from '../actions/action_index';
 
 import RenderHeader from '../components/render_header.jsx';
 import RenderTbody from '../components/render_tbody.jsx';
@@ -16,8 +16,8 @@ class TableFrame extends Component {
   }
 
   handleSelectIssue(selectIndex) {
-    this.props.onSelectIssue(this.props.rows[selectIndex]);
-    this.props.onDeleteIssue(selectIndex);
+    this.props.editIssue(this.props.rows[selectIndex]);
+    this.props.deleteIssue(selectIndex);
   }
 
   render() {
@@ -28,7 +28,7 @@ class TableFrame extends Component {
           <RenderTbody
             columns={this.props.columns}
             rows={this.props.rows}
-            onDeleteIssue={this.props.onDeleteIssue}
+            onDeleteIssue={this.props.deleteIssue}
             onSelectIssue={this.handleSelectIssue}
             newIssue={this.props.newIssue}
           />
@@ -39,23 +39,20 @@ class TableFrame extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  // whatever is returned will show up as props (this.props.rows) here
-  return {
-    rows: state.IssuesReducer,
-    columns: state.HeadsReducer,
-    newIssue: state.ActiveReducer.newIssue
-  };
-}
+const mapStateToProps = (state) => ({
+  rows: state.IssuesReducer.issues,
+  columns: state.HeadsReducer,
+  newIssue: state.IssuesReducer.newIssue
+});
 
 // Anything returned from here will be as props on this container
-function mapDispatchToProps(dispatch) {
-  // whenever selectIssue is called, the result shold be passed to all reducers
-  return bindActionCreators({
-    onSelectIssue: selectIssue,
-    onDeleteIssue: handleDeleteIssue
-  }, dispatch);
-}
+const mapDispatchToProps = (dispatch) => (
+  // whenever editIssue is called, the result shold be passed to all reducers
+  bindActionCreators({
+    editIssue,
+    deleteIssue
+  }, dispatch)
+);
 
 TableFrame.propTypes = {
   rows: React.PropTypes.arrayOf(
@@ -80,8 +77,8 @@ TableFrame.propTypes = {
     Owner: React.PropTypes.string,
     Priority: React.PropTypes.string
   }).isRequired,
-  onSelectIssue: React.PropTypes.func.isRequired,
-  onDeleteIssue: React.PropTypes.func.isRequired
+  editIssue: React.PropTypes.func.isRequired,
+  deleteIssue: React.PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableFrame);
