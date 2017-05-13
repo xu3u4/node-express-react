@@ -1,5 +1,7 @@
 # Node-Express-React
 
+[![Travis](https://img.shields.io/travis/xu3u4/node-express-react.svg?style=flat-square)](https://travis-ci.org/xu3u4/node-express-react)
+
 It is a React project based on node, webpack and use webpack-dev-server for hot reload.
 
 ## Features
