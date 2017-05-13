@@ -8,7 +8,7 @@ const RenderTbody = (props) => {
     <tr
       key={row.seq}
       onDoubleClick={() => props.onSelectIssue(i)}
-      className={props.newIssue && (props.newIssue.seq === row.seq) ? 'highlight' : null}
+      className={props.newIssue === row.seq ? 'highlight' : null}
     >
       {
         props.columns.map((col) => {

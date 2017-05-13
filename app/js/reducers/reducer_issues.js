@@ -6,7 +6,7 @@ export default function (state = {
     { seq: '4', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '4' }
   ],
   selectedIssue: {},
-  newIssue: {},
+  newIssue: '',
   isShowWarning: false
 }, action) {
   switch (action.type) {
@@ -31,7 +31,7 @@ export default function (state = {
       orderedArray.sort((prev, next) => prev.seq - next.seq);
       return {
         isShowWarning: false,
-        newIssue: action.payload,
+        newIssue: action.payload.seq,
         selectedIssue: {},
         issues: orderedArray
       };
@@ -44,7 +44,7 @@ export default function (state = {
     case 'ACTIVE_ISSUE':
       return {
         ...state,
-        newIssue: {},
+        newIssue: '',
         selectedIssue: action.payload,
         isShowWarning: false
       };

@@ -69,14 +69,7 @@ TableFrame.propTypes = {
     key: React.PropTypes.string,
     label: React.PropTypes.string
   })).isRequired,
-  newIssue: React.PropTypes.shape({
-    seq: React.PropTypes.string,
-    Status: React.PropTypes.string,
-    Category: React.PropTypes.string,
-    Title: React.PropTypes.string,
-    Owner: React.PropTypes.string,
-    Priority: React.PropTypes.string
-  }).isRequired,
+  newIssue: React.PropTypes.string.isRequired,
   editIssue: React.PropTypes.func.isRequired,
   deleteIssue: React.PropTypes.func.isRequired
 };
