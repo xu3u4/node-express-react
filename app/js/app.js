@@ -4,7 +4,7 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
 import reducers from './reducers';
-import TableFrame from './components/table_frame.jsx';
+import TableFrame from './components/table_frame';
 
 ReactDOM.render(
   <Provider store={createStore(reducers)}>

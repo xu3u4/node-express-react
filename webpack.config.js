@@ -11,7 +11,7 @@ var environment = process.env.NODE_ENV || 'development';
 
 module.exports = {
     entry: {
-        table: [__dirname + "/app/js/app.jsx", 'webpack/hot/dev-server']
+        table: [__dirname + "/app/js/app", 'webpack/hot/dev-server']
     },
 
     output: {

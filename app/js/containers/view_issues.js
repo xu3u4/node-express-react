@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { editIssue, deleteIssue } from '../actions/action_index';
 
 import '../../css/table.scss';
-import ViewIssues from '../components/view_issues/index.jsx';
+import ViewIssues from '../components/view_issues';
 
 const mapStateToProps = (state) => ({
   rows: state.IssuesReducer.issues,

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { updateIssues, showWarning } from '../actions/action_index';
-import EditIssue from '../components/edit_issue/index.jsx';
+import EditIssue from '../components/edit_issue';
 
 const mapStateToProps = (state) => ({
   columns: state.HeadsReducer,

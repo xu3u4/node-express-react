@@ -1,7 +1,7 @@
 import React from 'react';
 
-import RenderHeader from './render_header.jsx';
-import RenderTbody from './render_tbody.jsx';
+import RenderHeader from './render_header';
+import RenderTbody from './render_tbody';
 
 // component name must be Uppercamel case
 const ViewIssues = (props) => {
