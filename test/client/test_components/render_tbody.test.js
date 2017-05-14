@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
-import RenderTbody from '../../../app/js/components/render_tbody';
+import RenderTbody from '../../../app/js/components/view_issues/render_tbody';
 
 describe('Render <RenderTbody>', () => {
   const cols = [

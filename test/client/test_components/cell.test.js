@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
-import Cell from '../../../app/js/components/cell';
+import Cell from '../../../app/js/components/common/cell';
 
 describe('Render <Cell>', () => {
   const value = "Jocelyn";

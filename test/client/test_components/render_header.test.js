@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
-import RenderHeader from '../../../app/js/components/render_header';
+import RenderHeader from '../../../app/js/components/view_issues/render_header';
 
 describe('Render <RenderHeader>', () => {
   let thead;

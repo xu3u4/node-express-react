@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
-import EditCell from '../../../app/js/components/edit_cell';
+import EditCell from '../../../app/js/components/common/edit_cell';
 
 describe('Render <EditCell>', () => {
   const onChange = sinon.stub();

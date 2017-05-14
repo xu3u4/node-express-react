@@ -1,7 +1,7 @@
 import * as actions from '../../../app/js/actions/action_index';
 import { expect } from 'chai';
 
-describe('actions issues', () => {
+describe('action_index.js', () => {
   it('update issues', () => {
     expect(actions.updateIssues({ seq: '1', Status: 'Open', Owner: 'Allen'})).to.eql({
       type: 'UPDATE_ISSUES',

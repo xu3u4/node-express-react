@@ -2,7 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
-import ActionCell from '../../../app/js/components/action_cell';
+import ActionCell from '../../../app/js/components/common/action_cell';
 
 describe ('Render <ActionCell>', () => {
   const onAction = sinon.stub();
