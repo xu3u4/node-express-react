@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { updateIssues, showWarning } from '../actions/action_index';
 
-import ActionCell from '../components/action_cell.jsx';
-import Cell from '../components/cell.jsx';
-import EditCell from '../components/edit_cell.jsx';
+import ActionCell from '../common/action_cell.jsx';
+import Cell from '../common/cell.jsx';
+import EditCell from '../common/edit_cell.jsx';
 
-class EditTbody extends Component {
+class EditIssue extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -53,14 +50,14 @@ class EditTbody extends Component {
     return (this.props.columns.map((col) => {
       switch (col.key) {
         case 'seq':
-          return <Cell key={col.key}>{col.key}</Cell>;
+          return <Cell key={col.key}>{ col.key }</Cell>;
         case 'Action':
           return (
             <ActionCell
               key={col.key}
               action={() => this.handleUpdateIssues()}
             >
-              {this.props.selectedIssue.seq ? 'Update' : 'Add'}
+              { this.props.selectedIssue.seq ? 'Update' : 'Add' }
             </ActionCell>
           );
         default:
@@ -72,7 +69,7 @@ class EditTbody extends Component {
               editingIssue={this.props.selectedIssue}
               isShowWarning={this.props.isShowWarning}
             >
-              {this.state.editRow[col.key] || ''}
+              { this.state.editRow[col.key] || '' }
             </EditCell>
           );
       }
@@ -80,24 +77,15 @@ class EditTbody extends Component {
   }
 
   render() {
-    return <tbody><tr>{this.renderEditRow()}</tr></tbody>;
+    return (
+      <table>
+        <tbody><tr>{ this.renderEditRow() }</tr></tbody>
+      </table>
+    );
   }
 }
 
-const mapStateToProps = (state) => ({
-  columns: state.HeadsReducer,
-  selectedIssue: state.IssuesReducer.selectedIssue,
-  isShowWarning: state.IssuesReducer.isShowWarning
-});
-
-const mapDispatchtoProps = (dispatch) => (
-  bindActionCreators({
-    updateIssues,
-    showWarning
-  }, dispatch)
-);
-
-EditTbody.propTypes = {
+EditIssue.propTypes = {
   columns: React.PropTypes.arrayOf(
     React.PropTypes.shape({
       key: React.PropTypes.string,
@@ -117,4 +105,4 @@ EditTbody.propTypes = {
   isShowWarning: React.PropTypes.bool.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchtoProps)(EditTbody);
+export default EditIssue;

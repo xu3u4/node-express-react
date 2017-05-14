@@ -1,10 +1,10 @@
 import React from 'react';
 
 const RenderHeader = ({ columns }) => {
-  const Headers = columns.map((col) => <th key={col.key} >{col.key}</th>);
+  const Headers = columns.map((col) => <th key={col.key} >{ col.key }</th>);
   return (
     <thead>
-      <tr>{Headers}</tr>
+      <tr>{ Headers }</tr>
     </thead>
   );
 };

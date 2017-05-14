@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Cell from './cell.jsx';
-import ActionCell from './action_cell.jsx';
+import Cell from '../common/cell.jsx';
+import ActionCell from '../common/action_cell.jsx';
 
 const RenderTbody = (props) => {
   const renderRow = props.rows.map((row, i) => (
@@ -22,14 +22,14 @@ const RenderTbody = (props) => {
               </ActionCell>
             );
           }
-          return <Cell key={col.key} >{row[col.key]}</Cell>;
+          return <Cell key={col.key} >{ row[col.key] }</Cell>;
         })
       }
     </tr>
   ));
 
   return (
-    <tbody>{renderRow}</tbody>
+    <tbody>{ renderRow }</tbody>
   );
 };
 
