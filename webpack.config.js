@@ -60,6 +60,15 @@ module.exports = {
     hot: true,
     contentBase: './'
   },
+  resolve: {
+    alias: {
+      css: path.resolve(__dirname, 'app/css'),
+      actions: path.resolve(__dirname, 'app/js/actions'),
+      components: path.resolve(__dirname, 'app/js/components'),
+      containers: path.resolve(__dirname, 'app/js/containers'),
+      reducers: path.resolve(__dirname, 'app/js/reducers')
+    }
+  },
   plugins: [HTMLWebpackPluginConfig,
     new webpack.DefinePlugin({
       "process.env": {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import update from 'immutability-helper';
 
-import ActionCell from '../common/action_cell';
-import Cell from '../common/cell';
-import EditCell from '../common/edit_cell';
+import ActionCell from 'components/common/action_cell';
+import Cell from 'components/common/cell';
+import EditCell from 'components/common/edit_cell';
 
 class EditIssue extends Component {
   constructor(props) {

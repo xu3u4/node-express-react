@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Cell from '../common/cell';
-import ActionCell from '../common/action_cell';
+import Cell from 'components/common/cell';
+import ActionCell from 'components/common/action_cell';
 
 const RenderTbody = (props) => {
   const renderRow = props.rows.map((row, i) => (

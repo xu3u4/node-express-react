@@ -27,5 +27,8 @@ module.exports = {
     "arrow-parens": 0,
     "no-param-reassign": ["error", { "props": false }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  },
+  settings:{
+    'import/resolver': 'webpack',
   }
 };
