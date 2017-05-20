@@ -9,7 +9,7 @@ var express = require('express'),
 app.use(express.static(path.resolve(__dirname, 'dist')));
 
 router.get('/', function(req, res) {
-    res.sendfile('./index.html');
+  res.sendfile('./index.html');
 });
 
 
