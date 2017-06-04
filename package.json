@@ -8,7 +8,8 @@
     "test-server": "mocha test/server --reporter spec",
     "eslint": "eslint app/js test",
     "webpack-start": "export NODE_ENV=production && webpack && npm start",
-    "dev": "export NODE_ENV=development && webpack-dev-server --devtool eval --progress --colors --hot --content-base dist "
+    "dev": "export NODE_ENV=development && webpack-dev-server --devtool eval --progress --colors --hot --content-base dist ",
+    "server": "nodemon server/server"
   },
   "repository": {
     "type": "git",
@@ -23,8 +24,11 @@
   "license": "MIT",
   "dependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "body-parser": "^1.17.2",
     "express": "^4.14.0",
     "immutability-helper": "^2.1.2",
+    "mongodb": "^2.2.26",
+    "mongoose": "^4.10.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.3",
@@ -57,6 +61,7 @@
     "mocha": "^3.2.0",
     "mocha-jsdom": "^1.1.0",
     "node-sass": "^4.1.1",
+    "nodemon": "^1.11.0",
     "react-addons-test-utils": "^15.4.1",
     "react-transform-hmr": "^1.0.4",
     "redux-mock-store": "^1.2.3",
