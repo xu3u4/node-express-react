@@ -1,6 +1,6 @@
 import React from 'react';
 
-import 'css/table.scss';
+import '../../css/table.scss';
 import ViewIssues from 'containers/view_issues';
 import EditIssue from 'containers/edit_issue';
 
