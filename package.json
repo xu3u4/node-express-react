@@ -9,7 +9,7 @@
     "eslint": "eslint app/js test",
     "webpack-start": "export NODE_ENV=production && webpack && npm start",
     "dev": "export NODE_ENV=development && webpack-dev-server --devtool eval --progress --colors --hot --content-base dist ",
-    "server": "nodemon server/server"
+    "start": "nodemon server/server"
   },
   "repository": {
     "type": "git",
@@ -18,13 +18,15 @@
   "keywords": [
     "node",
     "express",
-    "react"
+    "react",
+    "mongodb"
   ],
   "author": "Jocelyn",
   "license": "MIT",
   "dependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "body-parser": "^1.17.2",
+    "cors": "^2.8.3",
     "express": "^4.14.0",
     "immutability-helper": "^2.1.2",
     "mongodb": "^2.2.26",
@@ -33,6 +35,7 @@
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.3",
     "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
     "superagent": "^3.3.1",
     "webpack-dev-server": "^1.16.2"
   },
