@@ -36,7 +36,10 @@ const RenderTbody = (props) => {
 RenderTbody.propTypes = {
   rows: React.PropTypes.arrayOf(
     React.PropTypes.shape({
-      seq: React.PropTypes.string,
+      seq: React.PropTypes.oneOfType([
+        React.PropTypes.string,
+        React.PropTypes.number
+      ]),
       Status: React.PropTypes.string,
       Category: React.PropTypes.string,
       Title: React.PropTypes.string,
