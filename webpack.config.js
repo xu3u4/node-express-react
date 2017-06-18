@@ -61,13 +61,7 @@ module.exports = {
     contentBase: './'
   },
   resolve: {
-    alias: {
-      css: path.resolve(__dirname, 'app/css'),
-      actions: path.resolve(__dirname, 'app/js/actions'),
-      components: path.resolve(__dirname, 'app/js/components'),
-      containers: path.resolve(__dirname, 'app/js/containers'),
-      reducers: path.resolve(__dirname, 'app/js/reducers')
-    }
+    modulesDirectories: [ 'app/js', 'node_modules' ]
   },
   plugins: [HTMLWebpackPluginConfig,
     new webpack.DefinePlugin({
