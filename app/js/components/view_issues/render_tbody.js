@@ -16,7 +16,7 @@ const RenderTbody = (props) => {
             return (
               <ActionCell
                 key={col.key}
-                action={() => props.onDeleteIssue(i)}
+                action={() => props.onDeleteIssue(i, row.seq)}
               >
                 Delete
               </ActionCell>

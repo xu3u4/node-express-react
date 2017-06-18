@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { editIssue, deleteIssue } from 'actions/action_index';
+import { editIssue, deleteIssue, getIssues, removeIssueTemp } from 'actions/action_index';
 
 import ViewIssues from 'components/view_issues';
 
@@ -15,7 +15,9 @@ const mapDispatchToProps = (dispatch) => (
   // whenever editIssue is called, the result should be passed to all reducers
   bindActionCreators({
     editIssue,
-    deleteIssue
+    deleteIssue,
+    getIssues,
+    removeIssueTemp
   }, dispatch)
 );
 

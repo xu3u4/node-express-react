@@ -40,7 +40,13 @@ class EditIssue extends Component {
       this.props.showWarning();
       return;
     }
-    this.props.updateIssues(this.state.editRow);
+
+    if (this.props.selectedIssue.seq) {
+      this.props.updateIssues(this.state.editRow);
+    } else {
+      this.props.createIssue(this.state.editRow);
+    }
+
     this.setState({
       editRow: {}
     });
@@ -50,7 +56,7 @@ class EditIssue extends Component {
     return (this.props.columns.map((col) => {
       switch (col.key) {
         case 'seq':
-          return <Cell key={col.key}>{ col.key }</Cell>;
+          return <Cell key={col.key}>{ this.props.selectedIssue.seq || col.key }</Cell>;
         case 'Action':
           return (
             <ActionCell
@@ -105,6 +111,7 @@ EditIssue.propTypes = {
   }).isRequired,
   updateIssues: React.PropTypes.func.isRequired,
   showWarning: React.PropTypes.func.isRequired,
+  createIssue: React.PropTypes.func.isRequired,
   isShowWarning: React.PropTypes.bool.isRequired
 };
 

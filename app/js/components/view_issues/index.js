@@ -1,32 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import RenderHeader from './render_header';
 import RenderTbody from './render_tbody';
 
 // component name must be Uppercamel case
-const ViewIssues = (props) => {
-  const handleSelectIssue = (selectIndex) => {
-    props.editIssue(props.rows[selectIndex]);
-    props.deleteIssue(selectIndex);
-  };
+class ViewIssues extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSelectIssue = this.handleSelectIssue.bind(this);
+  }
 
-  return (
-    <div>
-      <table>
-        <RenderHeader
-          columns={props.columns}
-        />
-        <RenderTbody
-          columns={props.columns}
-          rows={props.rows}
-          onDeleteIssue={props.deleteIssue}
-          onSelectIssue={handleSelectIssue}
-          newIssue={props.newIssue}
-        />
-      </table>
-    </div>
-  );
-};
+  componentDidMount() {
+    if (this.props.rows.length < 2) this.props.getIssues();
+  }
+
+  handleSelectIssue(selectIndex) {
+    this.props.editIssue(this.props.rows[selectIndex]);
+    this.props.removeIssueTemp(selectIndex);
+  }
+
+  render() {
+    return (
+      <div>
+        <table>
+          <RenderHeader
+            columns={this.props.columns}
+          />
+          <RenderTbody
+            columns={this.props.columns}
+            rows={this.props.rows}
+            onDeleteIssue={(id, seq) => this.props.deleteIssue(id, seq)}
+            onSelectIssue={(i) => this.handleSelectIssue(i)}
+            newIssue={this.props.newIssue}
+          />
+        </table>
+      </div>
+    ); // end return
+  } // end render
+} // end class
 
 ViewIssues.propTypes = {
   rows: React.PropTypes.arrayOf(
@@ -46,9 +57,11 @@ ViewIssues.propTypes = {
     key: React.PropTypes.string,
     label: React.PropTypes.string
   })).isRequired,
-  newIssue: React.PropTypes.string.isRequired,
+  newIssue: React.PropTypes.number.isRequired,
   editIssue: React.PropTypes.func.isRequired,
-  deleteIssue: React.PropTypes.func.isRequired
+  deleteIssue: React.PropTypes.func.isRequired,
+  removeIssueTemp: React.PropTypes.func.isRequired,
+  getIssues: React.PropTypes.func.isRequired
 };
 
 export default ViewIssues;

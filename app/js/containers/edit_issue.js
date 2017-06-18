@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { updateIssues, showWarning } from 'actions/action_index';
+import { updateIssues, showWarning, createIssue } from 'actions/action_index';
 import EditIssue from 'components/edit_issue';
 
 const mapStateToProps = (state) => ({
@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchtoProps = (dispatch) => (
   bindActionCreators({
+    createIssue,
     updateIssues,
     showWarning
   }, dispatch)

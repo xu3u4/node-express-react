@@ -1,16 +1,18 @@
 export default function (state = {
   issues: [
-    { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' },
-    { seq: '2', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '2' },
-    { seq: '3', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '3' },
-    { seq: '4', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '4' }
+    { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' }
   ],
   selectedIssue: {},
-  newIssue: '',
+  newIssue: 0,
   isShowWarning: false
 }, action) {
   switch (action.type) {
-    case 'ISSUE_DELETED':
+    case 'GET_ISSUES_SUCCESS':
+      return {
+        ...state,
+        issues: action.payload
+      };
+    case 'DELETE_ISSUE_SUCCESS':
       return {
         ...state,
         issues: [
@@ -18,24 +20,29 @@ export default function (state = {
           ...state.issues.slice(action.payload + 1)
         ]
       };
-    case 'UPDATE_ISSUES': {
-      action.payload.seq =
-        state.issues.length ?
-          (action.payload.seq || (1 + Number(state.issues[state.issues.length - 1].seq))
-          .toString())
-          : '1';
-      const orderedArray = [
-        ...state.issues,
-        action.payload
-      ];
-      orderedArray.sort((prev, next) => prev.seq - next.seq);
+    case 'CREATE_ISSUE_SUCCESS':
       return {
+        ...state,
         isShowWarning: false,
         newIssue: action.payload.seq,
         selectedIssue: {},
-        issues: orderedArray
+        issues: [
+          ...state.issues,
+          action.payload
+        ]
+      };
+    case 'UPDATE_ISSUE_SUCCESS': {
+      return {
+        ...state,
+        isShowWarning: false,
+        selectedIssue: {}
       };
     }
+    case 'GET_NEW_ISSUE':
+      return {
+        ...state,
+        newIssue: action.payload
+      };
     case 'SHOW_WARNING':
       return {
         ...state,
@@ -44,7 +51,7 @@ export default function (state = {
     case 'ACTIVE_ISSUE':
       return {
         ...state,
-        newIssue: '',
+        newIssue: 0,
         selectedIssue: action.payload,
         isShowWarning: false
       };
