@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import update from 'immutability-helper';
 
 import ActionCell from 'components/common/action_cell';
@@ -92,27 +93,27 @@ class EditIssue extends Component {
 }
 
 EditIssue.propTypes = {
-  columns: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      key: React.PropTypes.string,
-      label: React.PropTypes.string
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+      label: PropTypes.string
     })
   ).isRequired,
-  selectedIssue: React.PropTypes.shape({
-    seq: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number
+  selectedIssue: PropTypes.shape({
+    seq: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number
     ]),
-    Status: React.PropTypes.string,
-    Category: React.PropTypes.string,
-    Title: React.PropTypes.string,
-    Owner: React.PropTypes.string,
-    Priority: React.PropTypes.string
+    Status: PropTypes.string,
+    Category: PropTypes.string,
+    Title: PropTypes.string,
+    Owner: PropTypes.string,
+    Priority: PropTypes.string
   }).isRequired,
-  updateIssues: React.PropTypes.func.isRequired,
-  showWarning: React.PropTypes.func.isRequired,
-  createIssue: React.PropTypes.func.isRequired,
-  isShowWarning: React.PropTypes.bool.isRequired
+  updateIssues: PropTypes.func.isRequired,
+  showWarning: PropTypes.func.isRequired,
+  createIssue: PropTypes.func.isRequired,
+  isShowWarning: PropTypes.bool.isRequired
 };
 
 export default EditIssue;

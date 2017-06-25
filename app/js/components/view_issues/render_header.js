@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const RenderHeader = ({ columns }) => {
   const Headers = columns.map((col) => <th key={col.key} >{ col.key }</th>);
@@ -10,10 +11,10 @@ const RenderHeader = ({ columns }) => {
 };
 
 RenderHeader.propTypes = {
-  columns: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      key: React.PropTypes.string,
-      label: React.PropTypes.string
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+      label: PropTypes.string
     })
   ).isRequired
 };

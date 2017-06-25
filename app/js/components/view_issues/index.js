@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import RenderHeader from './render_header';
 import RenderTbody from './render_tbody';
@@ -40,28 +41,28 @@ class ViewIssues extends Component {
 } // end class
 
 ViewIssues.propTypes = {
-  rows: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      seq: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.number
+  rows: PropTypes.arrayOf(
+    PropTypes.shape({
+      seq: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
       ]),
-      Status: React.PropTypes.string,
-      Category: React.PropTypes.string,
-      Title: React.PropTypes.string,
-      Owner: React.PropTypes.string,
-      Priority: React.PropTypes.string
+      Status: PropTypes.string,
+      Category: PropTypes.string,
+      Title: PropTypes.string,
+      Owner: PropTypes.string,
+      Priority: PropTypes.string
     })
   ).isRequired,
-  columns: React.PropTypes.arrayOf(React.PropTypes.shape({
-    key: React.PropTypes.string,
-    label: React.PropTypes.string
+  columns: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string,
+    label: PropTypes.string
   })).isRequired,
-  newIssue: React.PropTypes.number.isRequired,
-  editIssue: React.PropTypes.func.isRequired,
-  deleteIssue: React.PropTypes.func.isRequired,
-  removeIssueTemp: React.PropTypes.func.isRequired,
-  getIssues: React.PropTypes.func.isRequired
+  newIssue: PropTypes.number.isRequired,
+  editIssue: PropTypes.func.isRequired,
+  deleteIssue: PropTypes.func.isRequired,
+  removeIssueTemp: PropTypes.func.isRequired,
+  getIssues: PropTypes.func.isRequired
 };
 
 export default ViewIssues;

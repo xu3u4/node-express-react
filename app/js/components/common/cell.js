@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Cell = ({ children }) => <td>{ children }</td>;
 
 Cell.propTypes = {
-  children: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.number
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
   ]),
 };
 

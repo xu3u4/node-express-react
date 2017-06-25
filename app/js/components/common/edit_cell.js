@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const EditCell = (props) => {
   const showMessage = props.isShowWarning && !props.children.length;
@@ -20,9 +21,9 @@ const EditCell = (props) => {
 };
 
 EditCell.propTypes = {
-  isShowWarning: React.PropTypes.bool.isRequired,
-  onInput: React.PropTypes.func.isRequired,
-  children: React.PropTypes.string.isRequired
+  isShowWarning: PropTypes.bool.isRequired,
+  onInput: PropTypes.func.isRequired,
+  children: PropTypes.string.isRequired
 };
 
 export default EditCell;

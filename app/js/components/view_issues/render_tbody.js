@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Cell from 'components/common/cell';
 import ActionCell from 'components/common/action_cell';
@@ -34,23 +35,23 @@ const RenderTbody = (props) => {
 };
 
 RenderTbody.propTypes = {
-  rows: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      seq: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.number
+  rows: PropTypes.arrayOf(
+    PropTypes.shape({
+      seq: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.number
       ]),
-      Status: React.PropTypes.string,
-      Category: React.PropTypes.string,
-      Title: React.PropTypes.string,
-      Owner: React.PropTypes.string,
-      Priority: React.PropTypes.string
+      Status: PropTypes.string,
+      Category: PropTypes.string,
+      Title: PropTypes.string,
+      Owner: PropTypes.string,
+      Priority: PropTypes.string
     })
   ).isRequired,
-  columns: React.PropTypes.arrayOf(
-    React.PropTypes.shape({
-      key: React.PropTypes.string,
-      label: React.PropTypes.string
+  columns: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+      label: PropTypes.string
     })
   ).isRequired
 };
