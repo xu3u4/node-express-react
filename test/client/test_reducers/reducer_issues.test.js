@@ -1,118 +1,91 @@
-import issues from '../../../app/js/reducers/reducer_issues';
-import { expect } from 'chai';
+import IssuesReducer from 'reducers/reducer_issues';
 
-const originIssues = [
-  { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' },
-  { seq: '2', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '2' },
-  { seq: '3', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '3' },
-  { seq: '4', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '4' }
-];
+jest.mock('data');
+const { headers, issues, defaultIssues, deleteIssue1 } = require('data');
 
 describe('reducer_issues.js', () => {
   it('should handle initial state', () => {
-    expect(issues(undefined, {})).to.eql({
-      issues: originIssues,
+    expect(IssuesReducer(undefined, {})).toEqual({
+      issues: defaultIssues,
       selectedIssue: {},
-      newIssue: '',
+      newIssue: 0,
       isShowWarning: false
     });
   });
 
   it('should handle ISSUE_DELETED', () => {
-    expect(issues(undefined, {
-      type: 'ISSUE_DELETED',
+    expect(IssuesReducer({issues}, {
+      type: 'DELETE_ISSUE_SUCCESS',
       payload: 1
-    })).to.eql({
-      issues: [
-        { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' },
-        { seq: '3', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '3' },
-        { seq: '4', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '4' }
-      ],
-      selectedIssue: {},
-      newIssue: '',
-      isShowWarning: false
-    });
+    })).toEqual({ issues: deleteIssue1 });
   });
 
   describe('should handle UPDATE_ISSUES', () => {
     it('when data modefied', () => {
-      expect(issues({
-        issues: [
-          { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' },
-          { seq: '3', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '3' },
-          { seq: '4', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '4' }
-        ]
+      expect(IssuesReducer({
+        issues: issues
       }, {
-        type: 'UPDATE_ISSUES',
+        type: 'UPDATE_ISSUE_SUCCESS',
         payload: { seq: '2', Status: 'Close', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '2' }
-      })).to.eql({
-        issues: [
-          { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' },
-          { seq: '2', Status: 'Close', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '2' },
-          { seq: '3', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '3' },
-          { seq: '4', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '4' }
-        ],
+      })).toEqual({
+        issues: issues,
         selectedIssue: {},
-        newIssue: '2',
         isShowWarning: false
       });
     });
 
     it('when data added', () => {
-      expect(issues(undefined, {
-        type: 'UPDATE_ISSUES',
-        payload: { Status: 'Close', Category: 'cat3', Title: 'title2', Owner: 'Jo', Priority: '3' }
-      })).to.eql({
+      expect(IssuesReducer(undefined, {
+        type: 'CREATE_ISSUE_SUCCESS',
+        payload: { seq: 5, Status: 'Close', Category: 'cat3', Title: 'title2', Owner: 'Jo', Priority: '3' }
+      })).toEqual({
         issues: [
-          { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' },
-          { seq: '2', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '2' },
-          { seq: '3', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '3' },
-          { seq: '4', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '4' },
-          { seq: '5', Status: 'Close', Category: 'cat3', Title: 'title2', Owner: 'Jo', Priority: '3' }
+          ...defaultIssues,
+          { seq: 5, Status: 'Close', Category: 'cat3', Title: 'title2', Owner: 'Jo', Priority: '3' }
         ],
         selectedIssue: {},
-        newIssue: '5',
+        newIssue: 5,
         isShowWarning: false
       });
     });    
   });
 
   it('should handle SHOW_WARNING', () => {
-    expect(issues(undefined, {
+    expect(IssuesReducer(undefined, {
       type: 'SHOW_WARNING',
       payload: true
-    })).to.eql({
-      issues: originIssues,
+    })).toEqual({
+      issues: defaultIssues,
       selectedIssue: {},
-      newIssue: '',
+      newIssue: 0,
       isShowWarning: true
     });
   });
 
   describe('when handle ACTIVE_ISSUE', () => {
     it('should set selected issue', () => {
-      expect(issues(undefined, {
+      expect(IssuesReducer(undefined, {
         type: 'ACTIVE_ISSUE',
-        payload: { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' }
-      })).to.eql({
-        issues: originIssues,
-        selectedIssue: { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' },
-        newIssue: '',
+        payload: issues[1]
+      })).toEqual({
+        issues: defaultIssues,
+        selectedIssue: issues[1],
+        newIssue: 0,
         isShowWarning: false
       });
     });
 
-    it('should put previous selected issue to newIssue', () => {
-      expect(issues({
-        selectedIssue: { seq: '1', Status: 'open', Owner: 'Jo'}
-      }, {
-        type: 'ACTIVE_ISSUE',
-        payload: {}
-      })).to.eql({
-        selectedIssue: {},
-        newIssue: '',
-        isShowWarning: false
-      });
-    });
+    // it('should put previous selected issue to newIssue', () => {
+    //   expect(IssuesReducer({
+    //     selectedIssue: { seq: '1', Status: 'open', Owner: 'Jo'}
+    //   }, {
+    //     type: 'ACTIVE_ISSUE',
+    //     payload: {}
+    //   })).toEqual({
+    //     selectedIssue: {},
+    //     newIssue: 0,
+    //     isShowWarning: false
+    //   });
+    // });
   });
 });

@@ -1,27 +1,34 @@
+// import ReactShallowRenderer from 'react-test-renderer/shallow';
 import React from 'react';
-import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
 import sinon from 'sinon';
-import ActionCell from '../../../app/js/components/common/action_cell';
 
-describe ('Render <ActionCell>', () => {
+import ActionCell from 'components/common/action_cell';
+
+describe ('<ActionCell>', () => {
   const onAction = sinon.stub();
   const action = 'Delete';
   let actionCell;
   
-  beforeEach(() => {
-    actionCell = shallow(
-        <ActionCell action={ onAction } >{ action }</ActionCell>
+  it ('render components', () => {
+    actionCell = renderer.create(
+      <ActionCell action={ onAction } >{ action }</ActionCell>
     );
-  });
-  it ('should render <button> inside <td>', () => {
-    expect(actionCell.type()).to.equal('td');
-    expect(actionCell.find('td').children().type()).to.equal('button');
-    expect(actionCell.text()).to.equal(action);
+    expect(actionCell).toMatchSnapshot();
   });
 
   it ('should call onAction when click', () => {
+    // const renderer = new ReactShallowRenderer();
+    // renderer.render(
+    //   <ActionCell action={ onAction } >{ action }</ActionCell>
+    // );
+    // actionCell = renderer.getRenderOutput();
+    // console.log(actionCell);
+    actionCell = shallow(
+      <ActionCell action={ onAction } >{ action }</ActionCell>
+    );
     actionCell.find('button').simulate('click');
-    expect(onAction.calledOnce).to.be.true;
+    expect(onAction.calledOnce).toBeTruthy();
   });
 });

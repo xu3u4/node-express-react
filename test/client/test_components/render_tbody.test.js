@@ -1,19 +1,14 @@
 import React from 'react';
-import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import sinon from 'sinon';
-import RenderTbody from '../../../app/js/components/view_issues/render_tbody';
+import renderer from 'react-test-renderer';
+
+import RenderTbody from 'components/view_issues/render_tbody';
+
+jest.mock('data');
 
 describe('Render <RenderTbody>', () => {
-  const cols = [
-    { key: 'seq', label: 'seq' },
-    { key: 'Status', label: 'Status' },
-    { key: 'Action', label: 'Action' }
-  ],
-  infos = [
-    { seq: '1', Status: 'Open' },
-    { seq: '2', Status: 'Close' }
-  ];
+  const { headers, issues } = require('data');
   const handleDeleteRow = sinon.stub(),
         selectIssue = sinon.stub();
   let tbody, newIssue = "1";
@@ -21,8 +16,8 @@ describe('Render <RenderTbody>', () => {
   beforeEach(() => {
     tbody = shallow(
       <RenderTbody
-        columns={ cols }
-        rows={ infos }
+        columns={ headers }
+        rows={ issues }
         onDeleteIssue={ handleDeleteRow }
         onSelectIssue={ selectIssue }
         newIssue={ newIssue }
@@ -31,26 +26,24 @@ describe('Render <RenderTbody>', () => {
   });
 
   it('should render tr, td', () => {
-    expect(tbody.type()).equal('tbody');
-    expect(tbody.find('tr').children()).to.have.length(cols.length*infos.length);
-  });
-
-  it('should render different cell', () => {
-    cols.forEach((col, id) => {
-      if(col.key === 'Action'){
-        expect(tbody.find('tr').first().childAt(id).name()).equal('ActionCell');
-      }else{
-        expect(tbody.find('tr').first().childAt(id).name()).equal('Cell');
-      }
-    });
+    tbody = renderer.create(
+      <RenderTbody
+        columns={ headers }
+        rows={ issues }
+        onDeleteIssue={ handleDeleteRow }
+        onSelectIssue={ selectIssue }
+        newIssue={ newIssue }
+      />
+    );
+    expect(tbody).toMatchSnapshot();
   });
 
   it('should have different color if just updated', () => {
-    expect(tbody.childAt(newIssue-1).hasClass('highlight')).to.be.true;
+    expect(tbody.childAt(newIssue-1).hasClass('highlight')).toBetruthy;
   });
 
   it('should select issue when double click', () => {
     tbody.find('tr').first().simulate('doubleclick');
-    expect(selectIssue.calledOnce).to.be.true;
+    expect(selectIssue.calledOnce).toBeTruthy;
   });
 });

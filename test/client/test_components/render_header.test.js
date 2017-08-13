@@ -1,24 +1,18 @@
 import React from 'react';
-import { expect } from 'chai';
-import { mount, shallow } from 'enzyme';
-import RenderHeader from '../../../app/js/components/view_issues/render_header';
+import { shallow } from 'enzyme';
+import renderer from 'react-test-renderer';
+
+import RenderHeader from 'components/view_issues/render_header';
+
+jest.mock('data');
 
 describe('Render <RenderHeader>', () => {
-  let thead;
-  const columns = [
-    { key: 'seq', label: 'seq' },
-    { key: 'Status', label: 'Status' }
-  ];
-
-  beforeEach(() => {
-    thead = shallow(
-      <RenderHeader columns = {columns} />
-    );
-  });
+  const { headers } = require('data'); // eslint-disable-line
+  const thead = renderer.create(
+    <RenderHeader columns = {headers} />
+  );
 
   it('should render all columns inside <thead>', function() {
-    expect(thead.type()).to.equal('thead');
-    expect(thead.find('thead').children().type()).to.equal('tr');
-    expect(thead.find('tr').children()).to.have.length(columns.length);
+    expect(thead).toMatchSnapshot();
   });
 });

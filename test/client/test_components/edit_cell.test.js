@@ -1,8 +1,9 @@
 import React from 'react';
-import { expect } from 'chai';
 import { mount, shallow } from 'enzyme';
 import sinon from 'sinon';
-import EditCell from '../../../app/js/components/common/edit_cell';
+import renderer from 'react-test-renderer';
+
+import EditCell from 'components/common/edit_cell';
 
 describe('Render <EditCell>', () => {
   const onChange = sinon.stub();
@@ -17,20 +18,22 @@ describe('Render <EditCell>', () => {
   });
 
   it('should have <input> inside <td>', () => {
-    expect(editcell.type()).to.equal('td');
-    expect(editcell.find('.input_row').type()).to.equal('input');
+    editcell = renderer.create(
+      <EditCell onInput={ onChange } isShowWarning={ isShowWarning }>{ value }</EditCell>
+    );
+    expect(editcell).toMatchSnapshot();
   });
 
   it('should call onChange when input', () => {
     editcell.find('input').simulate('change');
-    expect(onChange.calledOnce).to.be.true;
+    expect(onChange.calledOnce).toBeTruthy;
   });
 
   describe('if value is set', () => {
     value = 'cat1';
 
     it('input should have default value', () => {
-      expect(editcell.find('input').prop('value')).to.equal('cat1');
+      expect(editcell.find('input').prop('value')).toEqual('cat1');
     });
   });
 });
