@@ -1,6 +1,6 @@
 export default function (state = {
   issues: [
-    { seq: '1', Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' }
+    { seq: 1, Status: 'Open', Category: 'cat1', Title: 'title1', Owner: 'Allen', Priority: '1' }
   ],
   selectedIssue: {},
   newIssue: 0,
